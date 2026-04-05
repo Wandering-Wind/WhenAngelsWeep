@@ -239,6 +239,138 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Angel"",
+            ""id"": ""07593d44-764f-4cfa-82a0-bcb0960b2012"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""490d8c28-04d5-4b32-aa47-91bfb15299b5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""b20e669f-7a57-48c6-bf14-615ff040d91d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Teleport"",
+                    ""type"": ""Button"",
+                    ""id"": ""18e661b6-badd-4a8a-90d6-de86f80b3e76"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Kill"",
+                    ""type"": ""Button"",
+                    ""id"": ""83ec0d5a-bddc-4ad5-a541-467e0cdc8213"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Wasd"",
+                    ""id"": ""99bd77e1-468f-4490-a799-21dca1ba210f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fa3024e9-19bd-495c-a0bf-9f468c07f443"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""2212f6d8-d56e-4d52-85fe-b2e569df72c5"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""e8ea20c4-a6cd-4c9a-a87d-778c3df25e4b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b3c159a6-063b-4205-aa13-cc0270c19d5d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10ff2d14-2830-4c71-8d28-3cd0b1d26074"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df4f9ef3-ce7e-4397-bc21-a2f2f91c1d4c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bac78694-3295-41a6-8279-324e248d2181"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Kill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -250,11 +382,18 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
         m_Seeker_Look = m_Seeker.FindAction("Look", throwIfNotFound: true);
         m_Seeker_Interact = m_Seeker.FindAction("Interact", throwIfNotFound: true);
         m_Seeker_Sneak = m_Seeker.FindAction("Sneak", throwIfNotFound: true);
+        // Angel
+        m_Angel = asset.FindActionMap("Angel", throwIfNotFound: true);
+        m_Angel_Move = m_Angel.FindAction("Move", throwIfNotFound: true);
+        m_Angel_Look = m_Angel.FindAction("Look", throwIfNotFound: true);
+        m_Angel_Teleport = m_Angel.FindAction("Teleport", throwIfNotFound: true);
+        m_Angel_Kill = m_Angel.FindAction("Kill", throwIfNotFound: true);
     }
 
     ~@Player_Controls()
     {
         UnityEngine.Debug.Assert(!m_Seeker.enabled, "This will cause a leak and performance issues, Player_Controls.Seeker.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Angel.enabled, "This will cause a leak and performance issues, Player_Controls.Angel.Disable() has not been called.");
     }
 
     /// <summary>
@@ -466,6 +605,135 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="SeekerActions" /> instance referencing this action map.
     /// </summary>
     public SeekerActions @Seeker => new SeekerActions(this);
+
+    // Angel
+    private readonly InputActionMap m_Angel;
+    private List<IAngelActions> m_AngelActionsCallbackInterfaces = new List<IAngelActions>();
+    private readonly InputAction m_Angel_Move;
+    private readonly InputAction m_Angel_Look;
+    private readonly InputAction m_Angel_Teleport;
+    private readonly InputAction m_Angel_Kill;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Angel".
+    /// </summary>
+    public struct AngelActions
+    {
+        private @Player_Controls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public AngelActions(@Player_Controls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Angel/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_Angel_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Angel/Look".
+        /// </summary>
+        public InputAction @Look => m_Wrapper.m_Angel_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "Angel/Teleport".
+        /// </summary>
+        public InputAction @Teleport => m_Wrapper.m_Angel_Teleport;
+        /// <summary>
+        /// Provides access to the underlying input action "Angel/Kill".
+        /// </summary>
+        public InputAction @Kill => m_Wrapper.m_Angel_Kill;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Angel; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="AngelActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(AngelActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="AngelActions" />
+        public void AddCallbacks(IAngelActions instance)
+        {
+            if (instance == null || m_Wrapper.m_AngelActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_AngelActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+            @Teleport.started += instance.OnTeleport;
+            @Teleport.performed += instance.OnTeleport;
+            @Teleport.canceled += instance.OnTeleport;
+            @Kill.started += instance.OnKill;
+            @Kill.performed += instance.OnKill;
+            @Kill.canceled += instance.OnKill;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="AngelActions" />
+        private void UnregisterCallbacks(IAngelActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @Teleport.started -= instance.OnTeleport;
+            @Teleport.performed -= instance.OnTeleport;
+            @Teleport.canceled -= instance.OnTeleport;
+            @Kill.started -= instance.OnKill;
+            @Kill.performed -= instance.OnKill;
+            @Kill.canceled -= instance.OnKill;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="AngelActions.UnregisterCallbacks(IAngelActions)" />.
+        /// </summary>
+        /// <seealso cref="AngelActions.UnregisterCallbacks(IAngelActions)" />
+        public void RemoveCallbacks(IAngelActions instance)
+        {
+            if (m_Wrapper.m_AngelActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="AngelActions.AddCallbacks(IAngelActions)" />
+        /// <seealso cref="AngelActions.RemoveCallbacks(IAngelActions)" />
+        /// <seealso cref="AngelActions.UnregisterCallbacks(IAngelActions)" />
+        public void SetCallbacks(IAngelActions instance)
+        {
+            foreach (var item in m_Wrapper.m_AngelActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_AngelActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="AngelActions" /> instance referencing this action map.
+    /// </summary>
+    public AngelActions @Angel => new AngelActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Seeker" which allows adding and removing callbacks.
     /// </summary>
@@ -508,5 +776,41 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSneak(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Angel" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="AngelActions.AddCallbacks(IAngelActions)" />
+    /// <seealso cref="AngelActions.RemoveCallbacks(IAngelActions)" />
+    public interface IAngelActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Teleport" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTeleport(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Kill" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnKill(InputAction.CallbackContext context);
     }
 }
