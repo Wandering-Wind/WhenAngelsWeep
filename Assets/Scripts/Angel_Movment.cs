@@ -17,10 +17,10 @@ public class Angel_Movment : NetworkBehaviour
     [SerializeField] private float maxPitch = 80f;
 
     [Header("Teleport")]
-    [SerializeField] public Transform Angel_pos_curr;
+    /*[SerializeField] public Transform Angel_pos_curr;
     [SerializeField] public GameObject Angel_pos_01;
     [SerializeField] public GameObject Angel_pos_02;
-    [SerializeField] public GameObject Angel_pos_03;
+    [SerializeField] public GameObject Angel_pos_03;*/
 
     private PlayerInput pi;
     private InputAction moveAction;
@@ -61,7 +61,7 @@ public class Angel_Movment : NetworkBehaviour
 
     private void Start()
     {
-        Angel_pos_curr = gameObject.GetComponent<Transform>();
+       // Angel_pos_curr = transform;
     }
     private void Update()
     {
@@ -91,13 +91,13 @@ public class Angel_Movment : NetworkBehaviour
     {
 
     }
-    public void Teleport()
+   /* public void Teleport()
     {
 
         transform.position = Angel_pos_01.transform.position;
         transform.position = Angel_pos_02.transform.position;
         transform.position = Angel_pos_03.transform.position;
-    }
+    }*/
 }
 
 
