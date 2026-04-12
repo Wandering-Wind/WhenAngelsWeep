@@ -16,6 +16,8 @@ public class Seeker_Movement : NetworkBehaviour
     [SerializeField] private float lookSensitivity = 2f;
     [SerializeField] private float maxPitch = 80f;
 
+    [Header("Torch")]
+    public Light torchLight;
     private PlayerInput pi;
     private InputAction moveAction;
     private InputAction lookAction;
@@ -62,6 +64,11 @@ public class Seeker_Movement : NetworkBehaviour
         pitch -= look.y;
         pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
         cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
+    }
+
+    public void Torch(InputAction.CallbackContext context)
+    {
+        torchLight.enabled = !torchLight.enabled;
     }
 }
 

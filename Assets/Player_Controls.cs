@@ -136,6 +136,15 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Torch"",
+                    ""type"": ""Button"",
+                    ""id"": ""a26f483e-00de-43e2-8f2a-80e13f55fad4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -235,6 +244,17 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sneak"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""615a2b94-55c2-4d90-9a9c-23be1d458509"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Torch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -382,6 +402,7 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
         m_Seeker_Look = m_Seeker.FindAction("Look", throwIfNotFound: true);
         m_Seeker_Interact = m_Seeker.FindAction("Interact", throwIfNotFound: true);
         m_Seeker_Sneak = m_Seeker.FindAction("Sneak", throwIfNotFound: true);
+        m_Seeker_Torch = m_Seeker.FindAction("Torch", throwIfNotFound: true);
         // Angel
         m_Angel = asset.FindActionMap("Angel", throwIfNotFound: true);
         m_Angel_Move = m_Angel.FindAction("Move", throwIfNotFound: true);
@@ -474,6 +495,7 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Seeker_Look;
     private readonly InputAction m_Seeker_Interact;
     private readonly InputAction m_Seeker_Sneak;
+    private readonly InputAction m_Seeker_Torch;
     /// <summary>
     /// Provides access to input actions defined in input action map "Seeker".
     /// </summary>
@@ -505,6 +527,10 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Seeker/Sneak".
         /// </summary>
         public InputAction @Sneak => m_Wrapper.m_Seeker_Sneak;
+        /// <summary>
+        /// Provides access to the underlying input action "Seeker/Torch".
+        /// </summary>
+        public InputAction @Torch => m_Wrapper.m_Seeker_Torch;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -546,6 +572,9 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
             @Sneak.started += instance.OnSneak;
             @Sneak.performed += instance.OnSneak;
             @Sneak.canceled += instance.OnSneak;
+            @Torch.started += instance.OnTorch;
+            @Torch.performed += instance.OnTorch;
+            @Torch.canceled += instance.OnTorch;
         }
 
         /// <summary>
@@ -572,6 +601,9 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
             @Sneak.started -= instance.OnSneak;
             @Sneak.performed -= instance.OnSneak;
             @Sneak.canceled -= instance.OnSneak;
+            @Torch.started -= instance.OnTorch;
+            @Torch.performed -= instance.OnTorch;
+            @Torch.canceled -= instance.OnTorch;
         }
 
         /// <summary>
@@ -776,6 +808,13 @@ public partial class @Player_Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSneak(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Torch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTorch(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Angel" which allows adding and removing callbacks.
