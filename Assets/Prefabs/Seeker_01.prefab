@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6797426921534301229}
   - component: {fileID: 7875639675296007891}
   - component: {fileID: 4369216690194010907}
+  - component: {fileID: 861185694982045150}
   m_Layer: 0
   m_Name: Seeker_01
   m_TagString: Untagged
@@ -264,8 +265,21 @@ MonoBehaviour:
   moveSpeed: 5
   lookSensitivity: 2
   maxPitch: 80
-  torchLight: {fileID: 5576082399127423393}
+--- !u!114 &861185694982045150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51992603650886145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273705292e1fd8c4fa690e5c41235628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Seeker_Torch
+  ShowTopMostFoldoutHeaderGroup: 1
   playerTorch: {fileID: 1506098420187331823}
+  torchLight: {fileID: 1506098420187331823}
 --- !u!1 &1109345344791555031
 GameObject:
   m_ObjectHideFlags: 0
