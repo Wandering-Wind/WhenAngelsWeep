@@ -28,17 +28,12 @@ public class Seeker_Torch : NetworkBehaviour
         if (!IsOwner) return;
         if (torchAction.WasPressedThisFrame())
             OnTorchServerRpc();
-    }
-
-    [ServerRpc]
-    private void OnTorchServerRpc()
-    {
-        isTorchOn = !isTorchOn;
-
-        if (torchLight)
+        if (torchAction.WasReleasedThisFrame())
         {
-            torchLight.SetActive(isTorchOn);
+            isTorchOn = false;
+            torchLight.SetActive(false);
         }
+
         if (isTorchOn)
         {
             RaycastHit hit;
@@ -50,6 +45,16 @@ public class Seeker_Torch : NetworkBehaviour
                 }
             }
             Debug.DrawRay(playerTorch.transform.position, playerTorch.transform.forward * 20f, Color.red);
+        }
+    }
+
+    [ServerRpc]
+    private void OnTorchServerRpc()
+    {
+        isTorchOn = true;
+        if (torchLight)
+        {
+            torchLight.SetActive(isTorchOn);
         }
     }
 }

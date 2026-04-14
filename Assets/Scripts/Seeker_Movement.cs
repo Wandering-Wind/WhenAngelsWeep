@@ -15,6 +15,9 @@ public class Seeker_Movement : NetworkBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float lookSensitivity = 2f;
     [SerializeField] private float maxPitch = 80f;
+    [SerializeField] private float jumpHeight = 5f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private Vector3 velocity;
 
     private PlayerInput pi;
     private InputAction moveAction;
@@ -52,6 +55,7 @@ public class Seeker_Movement : NetworkBehaviour
 
     private void Update()
     {
+        ApplyGravity();
         Vector2 m = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * m.x + transform.forward * m.y;
         cc.Move(move * moveSpeed * Time.deltaTime);
@@ -62,6 +66,30 @@ public class Seeker_Movement : NetworkBehaviour
         pitch -= look.y;
         pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
         cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
+
+
+        if (jumpAction.WasPressedThisFrame()) 
+        {
+            OnJumpServerRpc();
+        }        
     }
+   
+     [ServerRpc]
+     public void OnJumpServerRpc()
+     {
+         if(cc.isGrounded)
+         {
+             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+         }
+     }
+     private void ApplyGravity()
+     {
+         if (cc.isGrounded && velocity.y < 0)
+             velocity.y = -2f;
+
+         velocity.y += gravity * Time.deltaTime;
+        cc.Move(velocity * Time.deltaTime);
+     }
 }
+
 
