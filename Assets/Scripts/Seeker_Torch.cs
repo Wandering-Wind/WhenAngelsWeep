@@ -11,6 +11,7 @@ public class Seeker_Torch : NetworkBehaviour
     private PlayerInput pi;
     private InputAction torchAction;
     private bool isTorchOn = false;
+    [SerializeField] private float raycastRange = 7f;
 
     public override void OnNetworkSpawn()
     {
@@ -33,18 +34,17 @@ public class Seeker_Torch : NetworkBehaviour
             isTorchOn = false;
             torchLight.SetActive(false);
         }
-
         if (isTorchOn)
         {
             RaycastHit hit;
-            if (Physics.Raycast(playerTorch.transform.position, playerTorch.transform.forward, out hit, 20f))
+            if (Physics.Raycast(playerTorch.transform.position, playerTorch.transform.forward, out hit, raycastRange))
             {
                 if (hit.collider.CompareTag("Angel"))
                 {
                     print("Ahhh");
                 }
             }
-            Debug.DrawRay(playerTorch.transform.position, playerTorch.transform.forward * 20f, Color.red);
+            Debug.DrawRay(playerTorch.transform.position, playerTorch.transform.forward * raycastRange, Color.red);
         }
     }
 

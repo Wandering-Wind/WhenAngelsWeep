@@ -12,7 +12,9 @@ public class Seeker_Movement : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
 
     [Header("Player Settings")]
+    [SerializeField] private float currmoveSpeed;
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float sneakSpeed = 3f;
     [SerializeField] private float lookSensitivity = 2f;
     [SerializeField] private float maxPitch = 80f;
     [SerializeField] private float jumpHeight = 5f;
@@ -51,6 +53,7 @@ public class Seeker_Movement : NetworkBehaviour
         sneakAction.Enable();
 
         if (playerCamera) playerCamera.enabled = true;
+        currmoveSpeed = moveSpeed;
     }
 
     private void Update()
@@ -58,7 +61,7 @@ public class Seeker_Movement : NetworkBehaviour
         ApplyGravity();
         Vector2 m = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * m.x + transform.forward * m.y;
-        cc.Move(move * moveSpeed * Time.deltaTime);
+        cc.Move(move * currmoveSpeed * Time.deltaTime);
 
         Vector2 look = lookAction.ReadValue<Vector2>() * lookSensitivity;
         transform.Rotate(0f, look.x, 0f);
@@ -67,11 +70,18 @@ public class Seeker_Movement : NetworkBehaviour
         pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
         cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
 
-
         if (jumpAction.WasPressedThisFrame()) 
         {
             OnJumpServerRpc();
         }        
+        if(sneakAction.WasPressedThisFrame())
+        {
+            OnSneakServerRpc();
+        }
+        if(sneakAction.WasReleasedThisFrame())
+        {
+            currmoveSpeed = moveSpeed; 
+        }
     }
    
      [ServerRpc]
@@ -82,6 +92,15 @@ public class Seeker_Movement : NetworkBehaviour
              velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
          }
      }
+
+    [ServerRpc]
+    public void OnSneakServerRpc()
+    {
+        if(cc.isGrounded)
+        {
+            currmoveSpeed = sneakSpeed;
+        }
+    }
      private void ApplyGravity()
      {
          if (cc.isGrounded && velocity.y < 0)
