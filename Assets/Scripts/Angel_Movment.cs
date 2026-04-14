@@ -57,12 +57,10 @@ public class Angel_Movment : NetworkBehaviour
         teleportAction.Enable();
 
         if (playerCamera) playerCamera.enabled = true;
+        // Angel_pos_curr = transform;
+
     }
 
-    private void Start()
-    {
-       // Angel_pos_curr = transform;
-    }
     private void Update()
     {
         Vector2 m = moveAction.ReadValue<Vector2>();
