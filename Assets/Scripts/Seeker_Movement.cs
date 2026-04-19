@@ -10,6 +10,7 @@ public class Seeker_Movement : NetworkBehaviour
     [Header("Player Components")]
     [SerializeField] private Transform cameraPivot;
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private Animator animator;
 
     [Header("Player Settings")]
     [SerializeField] private float currmoveSpeed;
@@ -20,6 +21,9 @@ public class Seeker_Movement : NetworkBehaviour
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private Vector3 velocity;
+
+    [Header("Animation")]
+    [SerializeField] private string speedParam = "Sped";
 
     private PlayerInput pi;
     private InputAction moveAction;
@@ -39,7 +43,6 @@ public class Seeker_Movement : NetworkBehaviour
         {
             if (playerCamera) playerCamera.enabled = false;
             if (pi) pi.enabled = false;
-            enabled = false;
             return;
         }
 
@@ -58,49 +61,32 @@ public class Seeker_Movement : NetworkBehaviour
 
     private void Update()
     {
-        ApplyGravity();
-        Vector2 m = moveAction.ReadValue<Vector2>();
-        Vector3 move = transform.right * m.x + transform.forward * m.y;
-        cc.Move(move * currmoveSpeed * Time.deltaTime);
+            if (!IsOwner) return;
 
-        Vector2 look = lookAction.ReadValue<Vector2>() * lookSensitivity;
-        transform.Rotate(0f, look.x, 0f);
+            ApplyGravity();
 
-        pitch -= look.y;
-        pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
-        cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
+            Vector2 m = moveAction.ReadValue<Vector2>();
+            Vector3 move = transform.right * m.x + transform.forward * m.y;
 
-        if (jumpAction.WasPressedThisFrame()) 
-        {
-            OnJumpServerRpc();
-        }        
-        if(sneakAction.WasPressedThisFrame())
-        {
-            OnSneakServerRpc();
-        }
-        if(sneakAction.WasReleasedThisFrame())
-        {
-            currmoveSpeed = moveSpeed; 
-        }
+            currmoveSpeed = sneakAction.IsPressed() ? sneakSpeed : moveSpeed;
+
+            cc.Move(move * currmoveSpeed * Time.deltaTime);
+
+            Vector2 look = lookAction.ReadValue<Vector2>() * lookSensitivity;
+            transform.Rotate(0f, look.x, 0f);
+
+            pitch -= look.y;
+            pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
+            cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
+
+            if (jumpAction.WasPressedThisFrame() && cc.isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+            if (animator) 
+            animator.SetFloat(speedParam, m.magnitude);
     }
-   
-     [ServerRpc]
-     public void OnJumpServerRpc()
-     {
-         if(cc.isGrounded)
-         {
-             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-         }
-     }
 
-    [ServerRpc]
-    public void OnSneakServerRpc()
-    {
-        if(cc.isGrounded)
-        {
-            currmoveSpeed = sneakSpeed;
-        }
-    }
      private void ApplyGravity()
      {
          if (cc.isGrounded && velocity.y < 0)

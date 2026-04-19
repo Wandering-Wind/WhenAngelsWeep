@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,28 +12,41 @@ public class Seeker_Torch : NetworkBehaviour
     private InputAction torchAction;
     private bool isTorchOn = false;
     [SerializeField] private float raycastRange = 7f;
+    public NetworkVariable<bool> isTorchOnNet = new NetworkVariable<bool>();
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner)
+        if (IsOwner)
         {
-            enabled = false; 
-            return;
+            pi = GetComponent<PlayerInput>();
+            torchAction = pi.actions["Torch"];
+            torchAction.Enable();
         }
         pi = GetComponent<PlayerInput>();
         torchAction = pi.actions["Torch"];
-        torchAction.Enable(); 
+        torchAction.Enable();
     }
     private void Update()
     {
+        bool isTorchOn = isTorchOnNet.Value;
+
+        if (torchLight && torchLight.activeSelf != isTorchOn)
+        {
+            torchLight.SetActive(isTorchOn);
+        }
+
         if (!IsOwner) return;
+
         if (torchAction.WasPressedThisFrame())
-            OnTorchServerRpc();
+        {
+            isTorchOnNet.Value = true;
+        }
+
         if (torchAction.WasReleasedThisFrame())
         {
-            isTorchOn = false;
-            torchLight.SetActive(false);
+            isTorchOnNet.Value = false;
         }
+
         if (isTorchOn)
         {
             RaycastHit hit;
@@ -44,17 +57,8 @@ public class Seeker_Torch : NetworkBehaviour
                     print("Ahhh");
                 }
             }
-            Debug.DrawRay(playerTorch.transform.position, playerTorch.transform.forward * raycastRange, Color.red);
-        }
-    }
 
-    [ServerRpc]
-    private void OnTorchServerRpc()
-    {
-        isTorchOn = true;
-        if (torchLight)
-        {
-            torchLight.SetActive(isTorchOn);
+            Debug.DrawRay(playerTorch.transform.position, playerTorch.transform.forward * raycastRange, Color.red);
         }
     }
 }
