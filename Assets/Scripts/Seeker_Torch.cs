@@ -39,13 +39,15 @@ public class Seeker_Torch : NetworkBehaviour
     {
         if (!IsOwner) return;
         if (torchAction.WasPressedThisFrame())
-        {
             OnTorchServerRpc();
-            RaycastTorchServerRpc();
-        }
+
         if (torchAction.WasReleasedThisFrame())
             OffTorchServerRpc();
 
+        if (isTorchOn.Value)
+        {
+            RaycastTorchServerRpc();
+        }
     }
     [ServerRpc]
     private void OnTorchServerRpc()
