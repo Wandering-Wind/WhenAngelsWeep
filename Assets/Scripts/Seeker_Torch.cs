@@ -8,58 +8,67 @@ public class Seeker_Torch : NetworkBehaviour
     [Header("Torch Settings")]
     public GameObject playerTorch;
     public GameObject torchLight;
+    public float raycastDitance = 7f;
     private PlayerInput pi;
     private InputAction torchAction;
-    private bool isTorchOn = false;
-    [SerializeField] private float raycastRange = 7f;
-    public NetworkVariable<bool> isTorchOnNet = new NetworkVariable<bool>();
+    private NetworkVariable<bool> isTorchOn = new NetworkVariable<bool>();
 
     public override void OnNetworkSpawn()
     {
-        if (IsOwner)
+        if (torchLight)
         {
-            pi = GetComponent<PlayerInput>();
-            torchAction = pi.actions["Torch"];
-            torchAction.Enable();
+            isTorchOn.OnValueChanged += OnTorchChanged;
+            OnTorchChanged(false, isTorchOn.Value);
         }
+
+        if (!IsOwner)
+        {
+            enabled = false;
+            return;
+        }
+
         pi = GetComponent<PlayerInput>();
         torchAction = pi.actions["Torch"];
         torchAction.Enable();
     }
+    private void OnTorchChanged(bool oldValue, bool newValue)
+    {
+        torchLight.SetActive(newValue);
+    }
     private void Update()
     {
-        bool isTorchOn = isTorchOnNet.Value;
-
-        if (torchLight && torchLight.activeSelf != isTorchOn)
-        {
-            torchLight.SetActive(isTorchOn);
-        }
-
         if (!IsOwner) return;
-
         if (torchAction.WasPressedThisFrame())
         {
-            isTorchOnNet.Value = true;
+            OnTorchServerRpc();
+            RaycastTorchServerRpc();
         }
-
         if (torchAction.WasReleasedThisFrame())
-        {
-            isTorchOnNet.Value = false;
-        }
+            OffTorchServerRpc();
 
-        if (isTorchOn)
+    }
+    [ServerRpc]
+    private void OnTorchServerRpc()
+    {
+        isTorchOn.Value = true;
+    }
+    [ServerRpc]
+    private void OffTorchServerRpc() 
+    { 
+        isTorchOn.Value = false;  
+    }
+    [ServerRpc] 
+    private void RaycastTorchServerRpc()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(playerTorch.transform.position, playerTorch.transform.forward, out hit, raycastDitance))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(playerTorch.transform.position, playerTorch.transform.forward, out hit, raycastRange))
+            if (hit.collider.CompareTag("Angel"))
             {
-                if (hit.collider.CompareTag("Angel"))
-                {
-                    print("Ahhh");
-                }
+                print("Ahhh");
             }
-
-            Debug.DrawRay(playerTorch.transform.position, playerTorch.transform.forward * raycastRange, Color.red);
         }
+        Debug.DrawRay(playerTorch.transform.position, playerTorch.transform.forward * raycastDitance, Color.red);
     }
 }
 
