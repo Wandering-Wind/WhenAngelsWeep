@@ -8,7 +8,6 @@ public class Seeker_Interact : NetworkBehaviour
     public Transform playerInteract;
     private PlayerInput pi;
     private InputAction interactAction;
-    private bool isTorchOn = false;
     [SerializeField] private float InteractRange = 3f;
 
     public override void OnNetworkSpawn()
@@ -28,10 +27,10 @@ public class Seeker_Interact : NetworkBehaviour
 
         if (interactAction.WasPressedThisFrame())
         {
-            Interact();
+            TryInteract();
         }
     }
-    public void Interact()
+    private void TryInteract()
     {
         Ray ray = new Ray(playerInteract.position, playerInteract.forward);
         RaycastHit hit;
@@ -47,7 +46,7 @@ public class Seeker_Interact : NetworkBehaviour
         }
     }
     [ServerRpc]
-    private void InteractServerRpc(ulong objectId)
+    public void InteractServerRpc(ulong objectId)
     {
         if (NetworkManager.SpawnManager.SpawnedObjects.TryGetValue(objectId, out NetworkObject netObj))
         {
