@@ -13,6 +13,7 @@ public class Seeker_Torch : NetworkBehaviour
     private InputAction torchAction;
     private NetworkVariable<bool> isTorchOn = new NetworkVariable<bool>();
 
+
     public override void OnNetworkSpawn()
     {
         if (torchLight)
@@ -68,6 +69,11 @@ public class Seeker_Torch : NetworkBehaviour
             if (hit.collider.CompareTag("Angel"))
             {
                 print("Ahhh");
+                var angel = hit.collider.GetComponent<Angel_Movment>();
+                if (angel != null)
+                {
+                    angel.FreezeServerRpc();
+                }
             }
         }
         Debug.DrawRay(playerTorch.transform.position, playerTorch.transform.forward * raycastDitance, Color.red);

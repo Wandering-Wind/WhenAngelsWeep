@@ -25,6 +25,10 @@ public class Angel_Movment : NetworkBehaviour
     private InputAction lookAction;
     private CharacterController cc;
 
+    private float lastHitTime;
+    [SerializeField] private float freezeGraceTime = 0.2f;
+    private NetworkVariable<bool> isFrozen = new NetworkVariable<bool>(false);
+
     private float pitch;
 
     public override void OnNetworkSpawn()
@@ -51,6 +55,10 @@ public class Angel_Movment : NetworkBehaviour
 
     private void Update()
     {
+
+        if (!IsOwner) return;
+        if (isFrozen.Value)
+            return;
         Vector2 m = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * m.x + transform.forward * m.y;
 
@@ -65,13 +73,26 @@ public class Angel_Movment : NetworkBehaviour
         pitch -= look.y;
         pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
         cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
+
+        if (Time.time - lastHitTime > freezeGraceTime)
+        {
+            isFrozen.Value = false;
+        }
     }
 
-    [ServerRpc]
+    /*[ServerRpc]
     private void TimeChangeSpeedServerRpc()
     {
         currMoveSpeed += changeSpeed; 
+    }*/
+
+    [ServerRpc(RequireOwnership = false)]
+    public void FreezeServerRpc()
+    {
+        lastHitTime = Time.time;
+        isFrozen.Value = true;
     }
+
 }
 
 
