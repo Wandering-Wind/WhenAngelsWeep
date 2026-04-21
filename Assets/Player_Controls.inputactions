@@ -213,6 +213,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Placement",
+                    "type": "Button",
+                    "id": "4927e368-e374-4c56-864d-bf8260988da8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -296,11 +305,22 @@
                 {
                     "name": "",
                     "id": "bac78694-3295-41a6-8279-324e248d2181",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Kill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68cfc917-29c4-4585-ba07-6addb1f7186e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Placement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

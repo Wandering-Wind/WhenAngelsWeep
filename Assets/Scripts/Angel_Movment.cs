@@ -11,6 +11,11 @@ public class Angel_Movment : NetworkBehaviour
     [SerializeField] private Transform cameraPivot;
     [SerializeField] private Camera playerCamera;
 
+    [Header("Placement Camera")]
+    [SerializeField] private Camera placementCamera;
+    [SerializeField] private GameObject placeablePrefab;
+    [SerializeField] private LayerMask groundLayer;
+
     [Header("Player Settings")]
     [SerializeField] private float currMoveSpeed = 5f;
     public float changeSpeed;
@@ -23,7 +28,9 @@ public class Angel_Movment : NetworkBehaviour
     private PlayerInput pi;
     private InputAction moveAction;
     private InputAction lookAction;
+    private InputAction placementAction;
     private CharacterController cc;
+    private MeshRenderer meshAngel;
 
     private float lastHitTime;
     [SerializeField] private float freezeGraceTime = 0.2f;
@@ -31,6 +38,12 @@ public class Angel_Movment : NetworkBehaviour
 
     private float pitch;
 
+    public enum GameState
+    {
+        Placement,
+        Gameplay
+    }
+    private NetworkVariable<GameState> currentState = new NetworkVariable<GameState>(GameState.Placement);
     public override void OnNetworkSpawn()
     {
         cc = GetComponent<CharacterController>();
@@ -46,17 +59,48 @@ public class Angel_Movment : NetworkBehaviour
 
         moveAction = pi.actions["Move"];
         lookAction = pi.actions["Look"];
+        placementAction = pi.actions["Placement"];
         moveAction.Enable();
         lookAction.Enable();
+        placementAction.Enable();
 
-        if (playerCamera) playerCamera.enabled = true;
+        meshAngel = gameObject.GetComponent<MeshRenderer>();
 
+        currentState.OnValueChanged += OnStateChanged;
+        UpdateCameraState(currentState.Value);
     }
+
+    private void OnStateChanged(GameState oldState, GameState newState)
+    {
+        UpdateCameraState(newState);
+    }
+
+    private void UpdateCameraState(GameState state)
+    {
+        if (state == GameState.Placement)
+        {
+            meshAngel.enabled = false;
+            placementCamera.enabled = true;
+            playerCamera.enabled = false;
+        }
+        else
+        {
+            meshAngel.enabled = true;
+            placementCamera.enabled = false;
+            playerCamera.enabled = true;
+        }
+    }
+
 
     private void Update()
     {
 
         if (!IsOwner) return;
+        if (currentState.Value == GameState.Placement)
+        {
+            HandlePlacement();
+            return;
+        }
         if (isFrozen.Value)
             return;
         Vector2 m = moveAction.ReadValue<Vector2>();
@@ -79,6 +123,35 @@ public class Angel_Movment : NetworkBehaviour
             isFrozen.Value = false;
         }
     }
+    private void HandlePlacement()
+    {
+        if (placementAction.WasPressedThisFrame())
+        {
+            Ray ray = placementCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
+            {
+                PlaceObjectServerRpc(hit.point);
+            }
+        }
+
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            StartGameplayServerRpc();
+        }
+    }
+    [ServerRpc]
+    private void PlaceObjectServerRpc(Vector3 position)
+    {
+        GameObject obj = Instantiate(placeablePrefab, position, Quaternion.identity);
+        obj.GetComponent<NetworkObject>().Spawn();
+    }
+
+    [ServerRpc]
+    private void StartGameplayServerRpc()
+    {
+        currentState.Value = GameState.Gameplay;
+    }
 
     /*[ServerRpc]
     private void TimeChangeSpeedServerRpc()
@@ -86,7 +159,7 @@ public class Angel_Movment : NetworkBehaviour
         currMoveSpeed += changeSpeed; 
     }*/
 
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc]
     public void FreezeServerRpc()
     {
         lastHitTime = Time.time;
