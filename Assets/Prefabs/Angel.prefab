@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4813744432664010666}
   m_Layer: 0
   m_Name: Angel
-  m_TagString: Untagged
+  m_TagString: Angel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,9 +261,11 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   cameraPivot: {fileID: 79204883387010904}
   playerCamera: {fileID: 6664438122652506466}
-  moveSpeed: 0.5
+  currMoveSpeed: 5
+  changeSpeed: 0
   lookSensitivity: 0.6
   maxPitch: 80
+  interactChange: {fileID: 0}
 --- !u!1 &1109345344791555031
 GameObject:
   m_ObjectHideFlags: 0

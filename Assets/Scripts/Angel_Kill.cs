@@ -1,15 +1,15 @@
+using System.Globalization;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Seeker_Interact : NetworkBehaviour
+public class Angel_Kill : NetworkBehaviour
 {
-    [Header("Interact Settings")]
-    public Transform playerInteract;
+    [Header("Kill Settings")]
+    public Transform AngelKillpos;
     private PlayerInput pi;
-    private InputAction interactAction;
-    [SerializeField] private float InteractRange = 3f;
-    public float AngelSpeed = 4;
+    private InputAction killAction;
+    [SerializeField] private float killRange = 3f;
 
     public override void OnNetworkSpawn()
     {
@@ -19,24 +19,24 @@ public class Seeker_Interact : NetworkBehaviour
             return;
         }
         pi = GetComponent<PlayerInput>();
-        interactAction = pi.actions["Interact"];
-        interactAction.Enable();
+        killAction = pi.actions["Interact"];
+        killAction.Enable();
     }
     private void Update()
     {
         if (!IsOwner) return;
 
-        if (interactAction.WasPressedThisFrame())
+        if (killAction.WasPressedThisFrame())
         {
             TryInteract();
         }
     }
     private void TryInteract()
     {
-        Ray ray = new Ray(playerInteract.position, playerInteract.forward);
+        Ray ray = new Ray(AngelKillpos.position, AngelKillpos.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, InteractRange))
+        if (Physics.Raycast(ray, out hit, killRange))
         {
             NetworkObject netObj = hit.collider.GetComponent<NetworkObject>();
 
@@ -51,22 +51,11 @@ public class Seeker_Interact : NetworkBehaviour
     {
         if (NetworkManager.SpawnManager.SpawnedObjects.TryGetValue(objectId, out NetworkObject netObj))
         {
-            if (netObj.CompareTag("Artifact"))
+            if (netObj.CompareTag("Angel"))
             {
-                Debug.Log("REAL");
-            }
-            else if (netObj.CompareTag("Fake_Artifact"))
-            {
-                Debug.Log("NOOOOOOOOO");
-                ChangeAngelSpeed(AngelSpeed);
+
+                Debug.Log("GameOver");
             }
         }
     }
-
-    public float ChangeAngelSpeed(float angelChangeSpeed)
-    {
-        return angelChangeSpeed;
-    }
-
 }
-
