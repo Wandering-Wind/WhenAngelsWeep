@@ -5,17 +5,22 @@ public class Player_Spawner : NetworkBehaviour
 {
     [SerializeField] private GameObject angelPrefab;
     [SerializeField] private GameObject seekerPrefab;
+    [SerializeField] private Transform SeekerSpawn;
+    [SerializeField] private Transform AngelSpawn;
+    private Vector3 seekerpos;
+    private Vector3 Angelpos;
 
     public override void OnNetworkSpawn()
     {
         if (!IsServer) return;
 
         NetworkManager.Singleton.OnClientConnectedCallback += SpawnPlayer;
+        seekerpos = SeekerSpawn.transform.position;
+        Angelpos = AngelSpawn.transform.position;
     }
 
     private void SpawnPlayer(ulong clientId)
     {
-        // Decide role (you can change this logic later)
         bool isAngel = clientId % 2 == 0;
 
         GameObject prefab = isAngel ? angelPrefab : seekerPrefab;
@@ -30,6 +35,6 @@ public class Player_Spawner : NetworkBehaviour
 
     private Vector3 GetSpawnPoint(bool isAngel)
     {
-        return isAngel ? new Vector3(0, 1, 0) : new Vector3(5, 1, 5);
+        return isAngel ? Angelpos : seekerpos;
     }
 }
