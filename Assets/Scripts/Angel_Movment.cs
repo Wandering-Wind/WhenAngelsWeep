@@ -54,6 +54,10 @@ public class Angel_Movment : NetworkBehaviour
         //TimeChangeSpeedServerRpc();
 
     }
+    public void SpawnAsPlayerObject(ulong clientId, bool destroyWithScene = false)
+    {
+
+    }
     private void OnEnable()
     {
         if (playerCamera) playerCamera.enabled = true;
