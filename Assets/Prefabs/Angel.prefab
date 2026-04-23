@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 4813744432664010666}
   - component: {fileID: 6020889920370422541}
   - component: {fileID: -8305405582661468700}
+  - component: {fileID: 7410934435220317606}
+  - component: {fileID: 3570810348805487056}
   m_Layer: 0
   m_Name: Angel
   m_TagString: Angel
@@ -36,7 +38,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 1.31, y: 1.87, z: 1.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 79204883387010904}
@@ -264,11 +266,6 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   cameraPivot: {fileID: 79204883387010904}
   playerCamera: {fileID: 6664438122652506466}
-  placementCamera: {fileID: 3031099740646395021}
-  placeablePrefab: {fileID: 6872159630502399786, guid: d4b7078cca9dd254d85cb5d40fc09e17, type: 3}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
   currMoveSpeed: 1
   changeSpeed: 0
   lookSensitivity: 0.6
@@ -303,10 +300,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Angel_Teleport
   ShowTopMostFoldoutHeaderGroup: 1
-  Angel_pos_curr: {fileID: 2061735988603971972}
-  Angel_pos_01: {fileID: 0}
-  Angel_pos_02: {fileID: 0}
-  Angel_pos_03: {fileID: 0}
+--- !u!114 &7410934435220317606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51992603650886145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ec871e87848ad4980da227fe8d9798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Angel_Set_State
+  ShowTopMostFoldoutHeaderGroup: 1
+  movement: {fileID: 4813744432664010666}
+  placement: {fileID: 3570810348805487056}
+--- !u!114 &3570810348805487056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51992603650886145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3022d12ad0cfae94d84b3a1ee1863dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Angel_Start_Place
+  ShowTopMostFoldoutHeaderGroup: 1
+  placementCamera: {fileID: 3031099740646395021}
+  Angel_Teleport_pos:
+  - {fileID: 6872159630502399786, guid: d4b7078cca9dd254d85cb5d40fc09e17, type: 3}
+  - {fileID: 6872159630502399786, guid: f1d1bbd7d5b56f74f998b5937b4134f7, type: 3}
+  - {fileID: 6872159630502399786, guid: 88379c5141de3b14eb53b0237c41e490, type: 3}
+  placedPositions: []
+  offset: 1
+  maxPlacements: 3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &1109345344791555031
 GameObject:
   m_ObjectHideFlags: 0
