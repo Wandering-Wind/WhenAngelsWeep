@@ -79,11 +79,11 @@ public class Seeker_Movement : NetworkBehaviour
             pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
             cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
 
-            if (jumpAction.WasPressedThisFrame() && cc.isGrounded)
-            {
-                JummpServerRpc();
-            }
-            if (animator) 
+        if (jumpAction.WasPressedThisFrame() && cc.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+        if (animator) 
             animator.SetFloat(speedParam, m.magnitude);
     }
 
@@ -95,11 +95,6 @@ public class Seeker_Movement : NetworkBehaviour
          velocity.y += gravity * Time.deltaTime;
         cc.Move(velocity * Time.deltaTime);
      }
-    [ServerRpc]
-    private void JummpServerRpc()
-    {
-        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-    }
 }
 
 

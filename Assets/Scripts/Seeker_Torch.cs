@@ -60,23 +60,26 @@ public class Seeker_Torch : NetworkBehaviour
     { 
         isTorchOn.Value = false;  
     }
-    [ServerRpc] 
+    [ServerRpc]
     private void RaycastTorchServerRpc()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(playerTorch.transform.position, playerTorch.transform.forward, out hit, raycastDitance))
+        Vector3 origin = playerTorch.transform.position;
+        Vector3 dir = playerTorch.transform.forward;
+
+        if (Physics.Raycast(origin, dir, out RaycastHit hit, raycastDitance))
         {
+            Debug.DrawRay(origin, dir * raycastDitance, Color.red);
+
             if (hit.collider.CompareTag("Angel"))
             {
-                print("Ahhh");
                 var angel = hit.collider.GetComponent<Angel_Movment>();
+
                 if (angel != null)
                 {
                     angel.FreezeServerRpc();
                 }
             }
         }
-        Debug.DrawRay(playerTorch.transform.position, playerTorch.transform.forward * raycastDitance, Color.red);
     }
 }
 
