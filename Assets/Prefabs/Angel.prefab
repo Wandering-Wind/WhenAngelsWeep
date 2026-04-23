@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3255913915
+  GlobalObjectIdHash: 1870320129
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -270,7 +270,7 @@ MonoBehaviour:
   changeSpeed: 0
   lookSensitivity: 0.6
   maxPitch: 80
-  interactChange: {fileID: 5034595520070429636, guid: fb9d6b67ade0c0f498908d3fbe69c6ec, type: 3}
+  FakeSpeedIncreaseVar: 0
   freezeGraceTime: 0.2
 --- !u!114 &6020889920370422541
 MonoBehaviour:

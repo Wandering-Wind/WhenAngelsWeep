@@ -10,6 +10,7 @@ public class Seeker_Interact : NetworkBehaviour
     private InputAction interactAction;
     [SerializeField] private float InteractRange = 3f;
     public float AngelSpeed = 4;
+    public Angel_Movment angel_speed_Increase;
 
     public override void OnNetworkSpawn()
     {
@@ -58,14 +59,9 @@ public class Seeker_Interact : NetworkBehaviour
             else if (netObj.CompareTag("Fake_Artifact"))
             {
                 Debug.Log("NOOOOOOOOO");
-                ChangeAngelSpeed(AngelSpeed);
+                angel_speed_Increase.FakeSpeedIncServerRpc();
             }
         }
-    }
-
-    public float ChangeAngelSpeed(float angelChangeSpeed)
-    {
-        return angelChangeSpeed;
     }
 
 }

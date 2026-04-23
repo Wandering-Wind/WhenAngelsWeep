@@ -19,16 +19,16 @@ public class Angel_Movment : NetworkBehaviour
     [SerializeField] private float maxPitch = 80f;
 
     [Header("Speed Change")]
-    public Seeker_Interact interactChange;
+    public float FakeSpeedIncreaseVar = 1;
+    public float TimeSpeedIncreaseVar = 1;
+
 
     private PlayerInput pi;
     private InputAction moveAction;
     private InputAction lookAction;
-    private InputAction placementAction;
     private CharacterController cc;
-    private MeshRenderer meshAngel;
 
-    private float lastHitTime;
+    [SerializeField] private float speedTimeInc = 180f;
     [SerializeField] private float freezeGraceTime = 0.2f;
     private NetworkVariable<bool> isFrozen = new NetworkVariable<bool>(false);
 
@@ -65,7 +65,7 @@ public class Angel_Movment : NetworkBehaviour
         Vector3 move = transform.right * m.x + transform.forward * m.y;
 
         //TimeChangeSpeedServerRpc();
-        interactChange.ChangeAngelSpeed(changeSpeed);
+
 
         cc.Move(move * currMoveSpeed * Time.deltaTime);
 
@@ -78,11 +78,17 @@ public class Angel_Movment : NetworkBehaviour
 
     }
 
-    /*[ServerRpc]
+    [ServerRpc]
     private void TimeChangeSpeedServerRpc()
     {
-        currMoveSpeed += changeSpeed; 
-    }*/
+        StartCoroutine(SpeedIncreaseRoutine()); 
+    }
+
+    [ServerRpc]
+    public void FakeSpeedIncServerRpc()
+    {
+        currMoveSpeed += FakeSpeedIncreaseVar;
+    }
 
     [ServerRpc]
     public void FreezeServerRpc()
@@ -90,6 +96,12 @@ public class Angel_Movment : NetworkBehaviour
         StartCoroutine(FreezeRoutine());
     }
 
+    private IEnumerator SpeedIncreaseRoutine()
+    {
+
+        yield return new WaitForSeconds(speedTimeInc);
+        currMoveSpeed += TimeSpeedIncreaseVar;
+    }
     private IEnumerator FreezeRoutine()
     {
         isFrozen.Value = true;
