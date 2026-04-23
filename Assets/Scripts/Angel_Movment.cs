@@ -51,7 +51,17 @@ public class Angel_Movment : NetworkBehaviour
         lookAction = pi.actions["Look"];
         moveAction.Enable();
         lookAction.Enable();
+        //TimeChangeSpeedServerRpc();
 
+    }
+    private void OnEnable()
+    {
+        if (playerCamera) playerCamera.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        if (playerCamera) playerCamera.enabled = false;
     }
 
 
@@ -63,9 +73,6 @@ public class Angel_Movment : NetworkBehaviour
             return;
         Vector2 m = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * m.x + transform.forward * m.y;
-
-        //TimeChangeSpeedServerRpc();
-
 
         cc.Move(move * currMoveSpeed * Time.deltaTime);
 

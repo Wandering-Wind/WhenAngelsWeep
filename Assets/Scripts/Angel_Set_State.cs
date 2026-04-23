@@ -13,8 +13,7 @@ public class Angel_Set_State : NetworkBehaviour
         Gameplay
     }
 
-    private NetworkVariable<GameState> currentState =
-        new NetworkVariable<GameState>(GameState.Placement);
+    private NetworkVariable<GameState> currentState = new NetworkVariable<GameState>(GameState.Placement);
 
     public override void OnNetworkSpawn()
     {

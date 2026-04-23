@@ -271,6 +271,8 @@ MonoBehaviour:
   lookSensitivity: 0.6
   maxPitch: 80
   FakeSpeedIncreaseVar: 0
+  TimeSpeedIncreaseVar: 1
+  speedTimeInc: 180
   freezeGraceTime: 0.2
 --- !u!114 &6020889920370422541
 MonoBehaviour:

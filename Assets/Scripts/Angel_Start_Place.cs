@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Angel_Start_Place : NetworkBehaviour
 {
     public Camera placementCamera;
+
     [SerializeField] private GameObject[] Angel_Teleport_pos;
     public List<Vector3> placedPositions = new List<Vector3>();
     [SerializeField] private float offset = 0.5f;
