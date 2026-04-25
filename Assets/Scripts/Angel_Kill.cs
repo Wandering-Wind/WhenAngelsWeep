@@ -28,10 +28,10 @@ public class Angel_Kill : NetworkBehaviour
 
         if (killAction.WasPressedThisFrame())
         {
-            TryInteract();
+            TryKill();
         }
     }
-    private void TryInteract()
+    private void TryKill()
     {
         Ray ray = new Ray(AngelKillpos.position, AngelKillpos.forward);
         RaycastHit hit;
@@ -42,16 +42,16 @@ public class Angel_Kill : NetworkBehaviour
 
             if (netObj != null)
             {
-                InteractServerRpc(netObj.NetworkObjectId);
+                KillServerRpc(netObj.NetworkObjectId);
             }
         }
     }
     [ServerRpc]
-    public void InteractServerRpc(ulong objectId)
+    public void KillServerRpc(ulong objectId)
     {
         if (NetworkManager.SpawnManager.SpawnedObjects.TryGetValue(objectId, out NetworkObject netObj))
         {
-            if (netObj.CompareTag("Angel"))
+            if (netObj.CompareTag("Seeker"))
             {
 
                 Debug.Log("GameOver");

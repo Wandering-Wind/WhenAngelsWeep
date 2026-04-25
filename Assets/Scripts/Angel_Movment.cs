@@ -51,7 +51,7 @@ public class Angel_Movment : NetworkBehaviour
         lookAction = pi.actions["Look"];
         moveAction.Enable();
         lookAction.Enable();
-        //TimeChangeSpeedServerRpc();
+        TimeChangeSpeedServerRpc();
 
     }
     public void SpawnAsPlayerObject(ulong clientId, bool destroyWithScene = false)

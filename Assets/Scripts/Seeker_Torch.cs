@@ -38,6 +38,7 @@ public class Seeker_Torch : NetworkBehaviour
     }
     private void Update()
     {
+
         if (!IsOwner) return;
         if (torchAction.WasPressedThisFrame())
             OnTorchServerRpc();
@@ -72,6 +73,7 @@ public class Seeker_Torch : NetworkBehaviour
 
             if (hit.collider.CompareTag("Angel"))
             {
+                print("Hit");
                 var angel = hit.collider.GetComponent<Angel_Movment>();
 
                 if (angel != null)
