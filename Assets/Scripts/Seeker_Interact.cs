@@ -60,6 +60,7 @@ public class Seeker_Interact : NetworkBehaviour
                 Debug.Log("NOOOOOOOOO");
                 if (angelTarget != null)
                 {
+                    Debug.Log("NOO    Works");
                     angelTarget.FakeSpeedIncServerRpc();
                 }
             }
