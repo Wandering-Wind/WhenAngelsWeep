@@ -1,6 +1,7 @@
 using System.Globalization;
 using Unity.Netcode;
 using UnityEngine;
+using static Angel_Set_State;
 
 public class Angel_Set_State : NetworkBehaviour
 {
@@ -33,8 +34,11 @@ public class Angel_Set_State : NetworkBehaviour
     private void ApplyState(GameState state)
     {
 
-        movement.enabled = (state == GameState.Gameplay);
-        placement.enabled = (state == GameState.Placement);
+        if (movement != null)
+            movement.enabled = (state == GameState.Gameplay);
+
+        if (placement != null)
+            placement.enabled = (state == GameState.Placement);
     }
 
     [ServerRpc(RequireOwnership = false)]

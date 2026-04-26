@@ -61,6 +61,12 @@ public class Seeker_Movement : NetworkBehaviour
         currmoveSpeed = moveSpeed;
     }
 
+    private void Start()
+    {
+        if (gameState == null)
+            gameState = FindObjectOfType<Angel_Set_State>();
+    }
+
     private void Update()
     {
             if (!IsOwner) return;

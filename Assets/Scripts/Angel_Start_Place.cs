@@ -15,10 +15,11 @@ public class Angel_Start_Place : NetworkBehaviour
     [SerializeField] private int maxPlacements = 3;
     public LayerMask groundLayer;
 
+
     private PlayerInput pi;
     private InputAction placementAction;
 
-    private Angel_Set_State controller;
+    [SerializeField] private Angel_Set_State controller;
 
     public override void OnNetworkSpawn()
     {
