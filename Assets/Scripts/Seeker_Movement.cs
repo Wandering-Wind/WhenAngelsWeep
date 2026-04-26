@@ -61,20 +61,16 @@ public class Seeker_Movement : NetworkBehaviour
         currmoveSpeed = moveSpeed;
     }
 
-    private void Start()
-    {
-        if (gameState == null)
-            gameState = FindObjectOfType<Angel_Set_State>();
-    }
-
     private void Update()
     {
             if (!IsOwner) return;
-            if (gameState != null && gameState.currentState.Value == Angel_Set_State.GameState.Placement)
-            {
-                velocity = Vector3.zero;
-                return;
-            }
+        if (gameState != null && gameState.currentState.Value == Angel_Set_State.GameState.Placement)
+        {
+            velocity = Vector3.zero;
+            return;
+        }
+        else if (gameState != null && gameState.currentState.Value == Angel_Set_State.GameState.Gameplay)
+        {
             ApplyGravity();
 
             Vector2 m = moveAction.ReadValue<Vector2>();
@@ -91,12 +87,13 @@ public class Seeker_Movement : NetworkBehaviour
             pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
             cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
 
-        if (jumpAction.WasPressedThisFrame() && cc.isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (jumpAction.WasPressedThisFrame() && cc.isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+            if (animator)
+                animator.SetFloat(speedParam, m.magnitude);
         }
-        if (animator) 
-            animator.SetFloat(speedParam, m.magnitude);
     }
 
      private void ApplyGravity()
