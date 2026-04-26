@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Seeker_Movement
   ShowTopMostFoldoutHeaderGroup: 1
+  gameState: {fileID: 7410934435220317606, guid: a564282b557ac05429d7f89588d2ff91, type: 3}
   cameraPivot: {fileID: 79204883387010904}
   playerCamera: {fileID: 6664438122652506466}
   animator: {fileID: 0}

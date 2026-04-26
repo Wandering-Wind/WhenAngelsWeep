@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Seeker_Movement : NetworkBehaviour
 {
+    [Header("Game_State")]
+    [SerializeField] private Angel_Set_State gameState;
 
     [Header("Player Components")]
     [SerializeField] private Transform cameraPivot;
@@ -62,7 +64,11 @@ public class Seeker_Movement : NetworkBehaviour
     private void Update()
     {
             if (!IsOwner) return;
-
+            if (gameState != null && gameState.currentState.Value == Angel_Set_State.GameState.Placement)
+            {
+                velocity = Vector3.zero;
+                return;
+            }
             ApplyGravity();
 
             Vector2 m = moveAction.ReadValue<Vector2>();

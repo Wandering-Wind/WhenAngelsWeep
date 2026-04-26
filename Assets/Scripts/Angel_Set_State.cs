@@ -13,14 +13,16 @@ public class Angel_Set_State : NetworkBehaviour
         Gameplay
     }
 
-    private NetworkVariable<GameState> currentState = new NetworkVariable<GameState>(GameState.Placement);
-
+    public NetworkVariable<GameState> currentState = new NetworkVariable<GameState>(GameState.Placement);
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) return;
-
         currentState.OnValueChanged += OnStateChanged;
         ApplyState(currentState.Value);
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        currentState.OnValueChanged -= OnStateChanged;
     }
 
     private void OnStateChanged(GameState oldState, GameState newState)
@@ -30,14 +32,16 @@ public class Angel_Set_State : NetworkBehaviour
 
     private void ApplyState(GameState state)
     {
+
         movement.enabled = (state == GameState.Gameplay);
         placement.enabled = (state == GameState.Placement);
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void StartGameplayServerRpc()
     {
         currentState.Value = GameState.Gameplay;
     }
 }
+
 
