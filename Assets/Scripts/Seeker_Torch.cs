@@ -77,6 +77,7 @@ public class Seeker_Torch : NetworkBehaviour
 
                 if (netObj != null)
                 {
+                    print("Hit");
                     FreezeAngelServerRpc(netObj.NetworkObjectId);
                 }
             }
