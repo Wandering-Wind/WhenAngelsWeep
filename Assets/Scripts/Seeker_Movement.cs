@@ -61,16 +61,20 @@ public class Seeker_Movement : NetworkBehaviour
         currmoveSpeed = moveSpeed;
     }
 
+    private void OnEnable()
+    {
+        if (playerCamera) playerCamera.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        if (playerCamera) playerCamera.enabled = false;
+    }
+
     private void Update()
     {
             if (!IsOwner) return;
-        if (gameState != null && gameState.currentState.Value == Angel_Set_State.GameState.Placement)
-        {
-            velocity = Vector3.zero;
-            return;
-        }
-        else if (gameState != null && gameState.currentState.Value == Angel_Set_State.GameState.Gameplay)
-        {
+{
             ApplyGravity();
 
             Vector2 m = moveAction.ReadValue<Vector2>();

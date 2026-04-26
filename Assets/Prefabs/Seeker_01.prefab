@@ -268,7 +268,7 @@ MonoBehaviour:
   currmoveSpeed: 0
   moveSpeed: 5
   sneakSpeed: 3
-  lookSensitivity: 2
+  lookSensitivity: 1
   maxPitch: 80
   jumpHeight: 5
   gravity: -9.81

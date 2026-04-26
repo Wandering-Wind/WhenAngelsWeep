@@ -1,7 +1,6 @@
 using System.Globalization;
 using Unity.Netcode;
 using UnityEngine;
-using static Angel_Set_State;
 
 public class Angel_Set_State : NetworkBehaviour
 {
