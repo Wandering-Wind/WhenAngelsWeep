@@ -89,22 +89,23 @@ public class Angel_Movment : NetworkBehaviour
 
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void TimeChangeSpeedServerRpc()
     {
         StartCoroutine(SpeedIncreaseRoutine()); 
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void FakeSpeedIncServerRpc()
     {
         currMoveSpeed += FakeSpeedIncreaseVar;
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void FreezeServerRpc()
     {
         StartCoroutine(FreezeRoutine());
+        Debug.Log("FROZEN on server");
     }
 
     private IEnumerator SpeedIncreaseRoutine()

@@ -73,13 +73,26 @@ public class Seeker_Torch : NetworkBehaviour
 
             if (hit.collider.CompareTag("Angel"))
             {
-                print("Hit");
-                var angel = hit.collider.GetComponent<Angel_Movment>();
+                var netObj = hit.collider.GetComponent<NetworkObject>();
 
-                if (angel != null)
+                if (netObj != null)
                 {
-                    angel.FreezeServerRpc();
+                    FreezeAngelServerRpc(netObj.NetworkObjectId);
                 }
+            }
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void FreezeAngelServerRpc(ulong angelId)
+    {
+        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(angelId, out var obj))
+        {
+            var angel = obj.GetComponent<Angel_Movment>();
+
+            if (angel != null)
+            {
+                angel.FreezeServerRpc();
             }
         }
     }

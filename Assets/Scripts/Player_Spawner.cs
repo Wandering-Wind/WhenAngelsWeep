@@ -29,8 +29,7 @@ public class Player_Spawner : NetworkBehaviour
 
         GameObject player = Instantiate(prefab, spawnPos, Quaternion.identity);
 
-        player.GetComponent<NetworkObject>()
-              .SpawnAsPlayerObject(clientId);
+        player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
     }
 
     private Vector3 GetSpawnPoint(bool isAngel)
