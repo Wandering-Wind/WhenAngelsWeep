@@ -10,6 +10,7 @@ public class Seeker_Interact : NetworkBehaviour
     private InputAction interactAction;
     [SerializeField] private float InteractRange = 3f;
     [SerializeField] private Angel_Movment angelTarget;
+    [SerializeField] private Camera interactCamera;
 
     public override void OnNetworkSpawn()
     {
@@ -33,9 +34,9 @@ public class Seeker_Interact : NetworkBehaviour
     }
     private void TryInteract()
     {
-        if (!playerInteract) return;
+        if (!interactCamera) return;
 
-        Ray ray = new Ray(playerInteract.position, playerInteract.forward);
+        Ray ray = interactCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
 
         Debug.DrawRay(ray.origin, ray.direction * InteractRange, Color.green, 1f);

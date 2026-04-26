@@ -10,8 +10,6 @@ public class Player_Spawner : NetworkBehaviour
     private Vector3 seekerpos;
     private Vector3 Angelpos;
 
-    private int playerCount = 0;
-
     public override void OnNetworkSpawn()
     {
         if (!IsServer) return;
@@ -23,12 +21,7 @@ public class Player_Spawner : NetworkBehaviour
 
     private void SpawnPlayer(ulong clientId)
     {
-        if (angelPrefab == null || seekerPrefab == null)
-        {
-            return;
-        }
-        bool isAngel = playerCount == 0;
-        playerCount++;
+        bool isAngel = clientId % 2 == 0;
 
         GameObject prefab = isAngel ? angelPrefab : seekerPrefab;
 
@@ -44,3 +37,4 @@ public class Player_Spawner : NetworkBehaviour
         return isAngel ? Angelpos : seekerpos;
     }
 }
+
