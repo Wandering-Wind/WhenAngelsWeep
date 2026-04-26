@@ -267,10 +267,10 @@ MonoBehaviour:
   cameraPivot: {fileID: 79204883387010904}
   playerCamera: {fileID: 6664438122652506466}
   currMoveSpeed: 1
-  changeSpeed: 0
+  changeSpeed: 1
   lookSensitivity: 0.6
   maxPitch: 80
-  FakeSpeedIncreaseVar: 0
+  FakeSpeedIncreaseVar: 1
   TimeSpeedIncreaseVar: 1
   speedTimeInc: 180
   freezeGraceTime: 0.2
