@@ -93,7 +93,7 @@ public class Seeker_Torch : NetworkBehaviour
 
             if (angel != null)
             {
-                angel.FreezeServerRpc();
+                angel.Freeze();
             }
         }
     }

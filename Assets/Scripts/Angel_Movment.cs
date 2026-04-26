@@ -64,7 +64,6 @@ public class Angel_Movment : NetworkBehaviour
         if (playerCamera) playerCamera.enabled = false;
     }
 
-
     private void Update()
     {
 
@@ -91,14 +90,12 @@ public class Angel_Movment : NetworkBehaviour
         StartCoroutine(SpeedIncreaseRoutine()); 
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public void FakeSpeedIncServerRpc()
+    public void FakeSpeedInc()
     {
         currMoveSpeed += FakeSpeedIncreaseVar;
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public void FreezeServerRpc()
+    public void Freeze()
     {
         StartCoroutine(FreezeRoutine());
         Debug.Log("FROZEN on server");

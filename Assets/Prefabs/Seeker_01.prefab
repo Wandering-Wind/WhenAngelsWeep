@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7875639675296007891}
   - component: {fileID: 4369216690194010907}
   - component: {fileID: 861185694982045150}
-  - component: {fileID: 5034595520070429636}
+  - component: {fileID: 4383623535653616729}
   m_Layer: 0
   m_Name: Seeker_01
   m_TagString: Seeker
@@ -290,7 +290,7 @@ MonoBehaviour:
   playerTorch: {fileID: 1506098420187331823}
   torchLight: {fileID: 1506098420187331823}
   raycastDitance: 7
---- !u!114 &5034595520070429636
+--- !u!114 &4383623535653616729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

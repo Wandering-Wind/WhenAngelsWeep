@@ -33,12 +33,16 @@ public class Seeker_Interact : NetworkBehaviour
     }
     private void TryInteract()
     {
+        if (!playerInteract) return;
+
         Ray ray = new Ray(playerInteract.position, playerInteract.forward);
         RaycastHit hit;
 
+        Debug.DrawRay(ray.origin, ray.direction * InteractRange, Color.green, 1f);
+
         if (Physics.Raycast(ray, out hit, InteractRange))
         {
-            NetworkObject netObj = hit.collider.GetComponent<NetworkObject>();
+            NetworkObject netObj = hit.collider.GetComponentInParent<NetworkObject>();
 
             if (netObj != null)
             {
@@ -60,8 +64,8 @@ public class Seeker_Interact : NetworkBehaviour
                 Debug.Log("NOOOOOOOOO");
                 if (angelTarget != null)
                 {
-                    Debug.Log("NOO    Works");
-                    angelTarget.FakeSpeedIncServerRpc();
+                    //Debug.Log("NOO    Works");
+                    angelTarget.FakeSpeedInc();
                 }
             }
 
