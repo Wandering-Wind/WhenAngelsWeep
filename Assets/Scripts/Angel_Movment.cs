@@ -69,7 +69,11 @@ public class Angel_Movment : NetworkBehaviour
 
         if (!IsOwner) return;
         if (isFrozen.Value)
+        {
+            cc.Move(Vector3.zero);
             return;
+        }
+
         Vector2 m = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * m.x + transform.forward * m.y;
 
@@ -98,8 +102,18 @@ public class Angel_Movment : NetworkBehaviour
 
     public void Freeze()
     {
-        StartCoroutine(FreezeRoutine());
-        Debug.Log("FROZEN on server");
+        SetFreezeServerRpc(true);
+    }
+
+    public void Unfreeze()
+    {
+        SetFreezeServerRpc(false);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetFreezeServerRpc(bool state)
+    {
+        isFrozen.Value = state;
     }
 
     private IEnumerator SpeedIncreaseRoutine()
@@ -107,12 +121,6 @@ public class Angel_Movment : NetworkBehaviour
 
         yield return new WaitForSeconds(speedTimeInc);
         currMoveSpeed += TimeSpeedIncreaseVar;
-    }
-    private IEnumerator FreezeRoutine()
-    {
-        isFrozen.Value = true;
-        yield return new WaitForSeconds(freezeGraceTime);
-        isFrozen.Value = false;
     }
 
 }

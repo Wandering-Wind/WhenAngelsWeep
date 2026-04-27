@@ -13,7 +13,7 @@ public class Seeker_Torch : NetworkBehaviour
     private InputAction torchAction;
     private NetworkVariable<bool> isTorchOn = new NetworkVariable<bool>();
 
-
+    private ulong lastFrozenAngel = ulong.MaxValue;
     public override void OnNetworkSpawn()
     {
         if (torchLight)
@@ -56,18 +56,23 @@ public class Seeker_Torch : NetworkBehaviour
     {
         isTorchOn.Value = true;
     }
+
     [ServerRpc]
-    private void OffTorchServerRpc() 
-    { 
-        isTorchOn.Value = false;  
+    private void OffTorchServerRpc()
+    {
+        isTorchOn.Value = false;
     }
+
     private void RaycastTorch()
     {
         if (!playerTorch) return;
+
         Vector3 origin = playerTorch.transform.position;
         Vector3 dir = playerTorch.transform.forward;
 
         Debug.DrawRay(origin, dir * raycastDitance, Color.red);
+
+        ulong currentHit = ulong.MaxValue;
 
         if (Physics.Raycast(origin, dir, out RaycastHit hit, raycastDitance))
         {
@@ -77,9 +82,28 @@ public class Seeker_Torch : NetworkBehaviour
 
                 if (netObj != null)
                 {
-                    print("Hit");
-                    FreezeAngelServerRpc(netObj.NetworkObjectId);
+                    currentHit = netObj.NetworkObjectId;
+
+                    if (lastFrozenAngel != currentHit)
+                    {
+                        FreezeAngelServerRpc(currentHit);
+
+                        if (lastFrozenAngel != ulong.MaxValue)
+                        {
+                            UnfreezeAngelServerRpc(lastFrozenAngel);
+                        }
+
+                        lastFrozenAngel = currentHit;
+                    }
                 }
+            }
+        }
+        else
+        {
+            if (lastFrozenAngel != ulong.MaxValue)
+            {
+                UnfreezeAngelServerRpc(lastFrozenAngel);
+                lastFrozenAngel = ulong.MaxValue;
             }
         }
     }
@@ -94,6 +118,18 @@ public class Seeker_Torch : NetworkBehaviour
             if (angel != null)
             {
                 angel.Freeze();
+            }
+        }
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void UnfreezeAngelServerRpc(ulong angelId)
+    {
+        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(angelId, out var obj))
+        {
+            var angel = obj.GetComponent<Angel_Movment>();
+            if (angel != null)
+            {
+                angel.Unfreeze();
             }
         }
     }
