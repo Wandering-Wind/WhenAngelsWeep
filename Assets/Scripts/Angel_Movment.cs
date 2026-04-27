@@ -92,6 +92,7 @@ public class Angel_Movment : NetworkBehaviour
 
     public void FakeSpeedInc()
     {
+        print("GVHJO{KJIHVJJO{OIYFGUOHIPJ{}HOGUIOHP");
         currMoveSpeed += FakeSpeedIncreaseVar;
     }
 

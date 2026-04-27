@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 
 public class Seeker_Movement : NetworkBehaviour
 {
-    [Header("Game_State")]
-    [SerializeField] private Angel_Set_State gameState;
 
     [Header("Player Components")]
     [SerializeField] private Transform cameraPivot;
@@ -59,16 +57,6 @@ public class Seeker_Movement : NetworkBehaviour
 
         if (playerCamera) playerCamera.enabled = true;
         currmoveSpeed = moveSpeed;
-    }
-
-    private void OnEnable()
-    {
-        if (playerCamera) playerCamera.enabled = true;
-    }
-
-    private void OnDisable()
-    {
-        if (playerCamera) playerCamera.enabled = false;
     }
 
     private void Update()

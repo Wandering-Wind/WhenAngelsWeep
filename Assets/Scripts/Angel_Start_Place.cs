@@ -31,11 +31,13 @@ public class Angel_Start_Place : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            enabled = false;
+            placementCamera.enabled = false;
             return;
         }
 
-        pi = GetComponent<PlayerInput>();
+        placementCamera.enabled = true;
+
+    pi = GetComponent<PlayerInput>();
         placementAction = pi.actions["Placement"];
         placementAction.Enable();
 
