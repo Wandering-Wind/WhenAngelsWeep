@@ -306,6 +306,7 @@ MonoBehaviour:
   playerInteract: {fileID: 2061735988603971972}
   InteractRange: 3
   angelTarget: {fileID: 4813744432664010666, guid: a564282b557ac05429d7f89588d2ff91, type: 3}
+  interactCamera: {fileID: 6664438122652506466}
 --- !u!1 &1109345344791555031
 GameObject:
   m_ObjectHideFlags: 0

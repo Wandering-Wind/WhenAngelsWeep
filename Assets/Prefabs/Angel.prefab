@@ -346,6 +346,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+  artifactMeshes:
+  - {fileID: 753501749627296429, guid: 64079559d8000524f86dd81ceb769e24, type: 3}
+  - {fileID: -5232320991605194966, guid: a13625439ed4b704cad43193bfb21812, type: 3}
+  - {fileID: 4402122909920097742, guid: a13625439ed4b704cad43193bfb21812, type: 3}
+  realArtifactPrefab: {fileID: 792203758291243963, guid: 0c7c32be70e729c49b124d6b020302fd, type: 3}
+  fakeArtifactPrefab: {fileID: 7170135178159185550, guid: 083d10906e8f02f448d28ee10f2d2719, type: 3}
   controller: {fileID: 7410934435220317606}
 --- !u!1 &1109345344791555031
 GameObject:
