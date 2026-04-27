@@ -267,7 +267,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   cameraPivot: {fileID: 79204883387010904}
   playerCamera: {fileID: 6664438122652506466}
-  currMoveSpeed: 1
+  currMoveSpeed: 2
   changeSpeed: 1
   lookSensitivity: 0.6
   maxPitch: 80

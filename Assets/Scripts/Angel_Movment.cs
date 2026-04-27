@@ -17,6 +17,9 @@ public class Angel_Movment : NetworkBehaviour
     public float changeSpeed;
     [SerializeField] private float lookSensitivity = 2f;
     [SerializeField] private float maxPitch = 80f;
+    [SerializeField] private float jumpHeight = 5f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private Vector3 velocity;
 
     [Header("Speed Change")]
     public float FakeSpeedIncreaseVar = 1;
@@ -73,6 +76,7 @@ public class Angel_Movment : NetworkBehaviour
             cc.Move(Vector3.zero);
             return;
         }
+        ApplyGravity();
 
         Vector2 m = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * m.x + transform.forward * m.y;
@@ -121,6 +125,14 @@ public class Angel_Movment : NetworkBehaviour
 
         yield return new WaitForSeconds(speedTimeInc);
         currMoveSpeed += TimeSpeedIncreaseVar;
+    }
+    private void ApplyGravity()
+    {
+        if (cc.isGrounded && velocity.y < 0)
+            velocity.y = -2f;
+
+        velocity.y += gravity * Time.deltaTime;
+        cc.Move(velocity * Time.deltaTime);
     }
 
 }
