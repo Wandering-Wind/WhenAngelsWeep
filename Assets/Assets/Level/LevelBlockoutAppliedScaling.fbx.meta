@@ -1,0 +1,370 @@
+fileFormatVersion: 2
+guid: a13625439ed4b704cad43193bfb21812
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BeigeMetallic
+    second: {fileID: 2100000, guid: afab63039d2169a4e884f82f1d11d967, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BeigePlastor.001
+    second: {fileID: 2100000, guid: 97ab10a3161d4c2489edebd646631733, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlackPlastor.002
+    second: {fileID: 2100000, guid: 892e65cfeee0b7b4d93c743ad3ab045e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BrownMetallic
+    second: {fileID: 2100000, guid: 94421c8b16bc4534a865bdb2c5a66a1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Coloured Glass.002
+    second: {fileID: 2100000, guid: 1f21880d8ea55a54ea8af2c497f23561, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EggshellMetallic
+    second: {fileID: 2100000, guid: 0d50c6b8a237ef84291bb6215c13f86f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frost Glass.001
+    second: {fileID: 2100000, guid: f15826675934e10409ed7e853a1846a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 252fa362bbf4902428ac15e96841766d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: d891899b63ce32f4ba945e5fb2422ada, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: NudePlastor.001
+    second: {fileID: 2100000, guid: 4722c2ae689bdc94a8d7b91098a97ef8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.001
+    second: {fileID: 2100000, guid: 46f91de691f081142ba4a6c07910d521, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.003
+    second: {fileID: 2100000, guid: d9d3f2df4411d3544885a628c07468a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.004
+    second: {fileID: 2100000, guid: 5fd111ee7cdb1bd4b9bc6f63719c9da8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.005
+    second: {fileID: 2100000, guid: 0520aeb16afb39f4396cc93f63b80151, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.006
+    second: {fileID: 2100000, guid: fea24a8950227674e8011802647d63ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.007
+    second: {fileID: 2100000, guid: 52c9c31a9001ba04aa210894de5b08de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.008
+    second: {fileID: 2100000, guid: 04dfbb344965b2342b1119c2483b96bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.009
+    second: {fileID: 2100000, guid: 7ca475483e5adc742849383bbfecb91a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.010
+    second: {fileID: 2100000, guid: 0e06f6041dc3b6b46880b709bb079585, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.011
+    second: {fileID: 2100000, guid: d035871507dc90b408c00fd53b56fef3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.012
+    second: {fileID: 2100000, guid: 76b3c09509a855a4b8eb3bb885692710, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.013
+    second: {fileID: 2100000, guid: ee061be2ff96e5d469f3d1b4f375d2a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.014
+    second: {fileID: 2100000, guid: 463bbc91f44ae4a4bad4f0c9b6a70e55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.015
+    second: {fileID: 2100000, guid: cbada23fe1980544f85d47ec3455a0d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.016
+    second: {fileID: 2100000, guid: be6232f99e19f6f49a86657c1dcd9f5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.017
+    second: {fileID: 2100000, guid: 43dd3ba0465f05240a8ab9034e2b66ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.018
+    second: {fileID: 2100000, guid: d008f984d4d43db44982383c9ec68872, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.019
+    second: {fileID: 2100000, guid: 27bfd8611aeebb543977e4ff379f4ceb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.020
+    second: {fileID: 2100000, guid: 449e09fdf9db0424ebbd261adf7276a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.021
+    second: {fileID: 2100000, guid: 23584cd9c4dbe244a9940d469733f910, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.022
+    second: {fileID: 2100000, guid: a341b499e016fe7468fac27716c13d3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.023
+    second: {fileID: 2100000, guid: e4f070b418a399f46a56f830278de27d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.024
+    second: {fileID: 2100000, guid: c9a579edbad07914797f955e37233b5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.025
+    second: {fileID: 2100000, guid: 6c5094e29f130fe45941c00973b5918f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.026
+    second: {fileID: 2100000, guid: d6ed051bdfa98d3429c1428fa22d9778, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.027
+    second: {fileID: 2100000, guid: bc6202c176983004fbc4eaade7e1fbb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.028
+    second: {fileID: 2100000, guid: e74577ea56eef754aa179c07d62548fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.029
+    second: {fileID: 2100000, guid: 4ea4cdfd6a4660741b4940a2c5c80262, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.030
+    second: {fileID: 2100000, guid: d1edf7b4440c9e24a8a01b6aa2dd92da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.031
+    second: {fileID: 2100000, guid: c49411a26eebf324aabde4e6f0f2a685, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.032
+    second: {fileID: 2100000, guid: 84d54d7fc7f676c459bc88372c96a0b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWood.033
+    second: {fileID: 2100000, guid: ff120867472996743bafb322928a6d1c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWoodVariation2.001
+    second: {fileID: 2100000, guid: c9b0857596efe7742b3792a73f960d7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ParquetWoodVariation3.001
+    second: {fileID: 2100000, guid: 67f0a9a0846000c4294ed0fc42edfa0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastor2.002
+    second: {fileID: 2100000, guid: 3854ec3866ad8154e8ad153d9607ddd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallMarble.001
+    second: {fileID: 2100000, guid: 4c07675301e0b1444916aebdf5ada333, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WhitePlastor.003
+    second: {fileID: 2100000, guid: f7d29009e9ec1e243ac28e8e82e49704, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 09e62b85cc5c5fa439c2db7468d1a669, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodDarkBrown
+    second: {fileID: 2100000, guid: 1c70941a8e822054a975c58fce31faea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodLightBrown
+    second: {fileID: 2100000, guid: 423b426050e621a408456ee412250d3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodWarmBrown
+    second: {fileID: 2100000, guid: 2d7e63d4a1106d54ebed2bad32677af1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodWhite.001
+    second: {fileID: 2100000, guid: 58e863d2e12c62c419b1f4a45faa2756, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
