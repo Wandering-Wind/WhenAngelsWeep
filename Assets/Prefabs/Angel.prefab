@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: -8305405582661468700}
   - component: {fileID: 7410934435220317606}
   - component: {fileID: 3570810348805487056}
+  - component: {fileID: 6823942944475038952}
   m_Layer: 0
   m_Name: Angel
   m_TagString: Angel
@@ -271,6 +272,9 @@ MonoBehaviour:
   changeSpeed: 1
   lookSensitivity: 0.6
   maxPitch: 80
+  jumpHeight: 5
+  gravity: -9.81
+  velocity: {x: 0, y: 0, z: 0}
   FakeSpeedIncreaseVar: 1
   TimeSpeedIncreaseVar: 1
   speedTimeInc: 180
@@ -358,6 +362,33 @@ MonoBehaviour:
   realArtifactPrefab: {fileID: 792203758291243963, guid: 0c7c32be70e729c49b124d6b020302fd, type: 3}
   fakeArtifactPrefab: {fileID: 7170135178159185550, guid: 083d10906e8f02f448d28ee10f2d2719, type: 3}
   controller: {fileID: 7410934435220317606}
+--- !u!54 &6823942944475038952
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51992603650886145}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1109345344791555031
 GameObject:
   m_ObjectHideFlags: 0
