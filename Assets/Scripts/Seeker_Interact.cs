@@ -29,10 +29,12 @@ public class Seeker_Interact : NetworkBehaviour
 
         if (interactAction.WasPressedThisFrame())
         {
-            TryInteract();
+            Debug.Log("INTERACT PRESSED");
+            TryInteractServerRpc();
         }
     }
-    private void TryInteract()
+    [ServerRpc]
+    private void TryInteractServerRpc()
     {
         if (!interactCamera) return;
 
