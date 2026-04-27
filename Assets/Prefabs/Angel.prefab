@@ -290,7 +290,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   AngelKillpos: {fileID: 2061735988603971972}
   killRange: 3
-  winScreenAngel: {fileID: 0}
+  winScreenAngel: {fileID: 7680559855890049060, guid: 617672d1e03a16542a02f9e80ad9f56f, type: 3}
 --- !u!114 &-8305405582661468700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,11 +347,14 @@ MonoBehaviour:
   maxPlacements: 3
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 8
   artifactMeshes:
-  - {fileID: 753501749627296429, guid: 64079559d8000524f86dd81ceb769e24, type: 3}
-  - {fileID: -5232320991605194966, guid: a13625439ed4b704cad43193bfb21812, type: 3}
-  - {fileID: 4402122909920097742, guid: a13625439ed4b704cad43193bfb21812, type: 3}
+  - {fileID: -5495902117074765545, guid: 3378476fd577a78429ed75625a71ec4e, type: 3}
+  - {fileID: -5495902117074765545, guid: 52992ef2f49a0a34db673504d913181a, type: 3}
+  - {fileID: -5495902117074765545, guid: 42c508fa37b311944b4f1f328fe47363, type: 3}
+  - {fileID: -5495902117074765545, guid: 5ad70e868502c814ba94ff1ee6876297, type: 3}
+  - {fileID: -5495902117074765545, guid: 8deb675926e136d439e826ad7601dce9, type: 3}
+  - {fileID: -5495902117074765545, guid: 5e50f40f7a04a364ea99d1b204f95acc, type: 3}
   realArtifactPrefab: {fileID: 792203758291243963, guid: 0c7c32be70e729c49b124d6b020302fd, type: 3}
   fakeArtifactPrefab: {fileID: 7170135178159185550, guid: 083d10906e8f02f448d28ee10f2d2719, type: 3}
   controller: {fileID: 7410934435220317606}
@@ -510,7 +513,7 @@ Transform:
   m_GameObject: {fileID: 2522160506698693502}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.0306947, y: 11.81, z: 0.52}
+  m_LocalPosition: {x: -12, y: 43.6, z: 3.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
