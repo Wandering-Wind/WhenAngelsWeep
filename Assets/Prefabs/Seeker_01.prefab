@@ -308,6 +308,8 @@ MonoBehaviour:
   angelTarget: {fileID: 4813744432664010666, guid: a564282b557ac05429d7f89588d2ff91, type: 3}
   interactCamera: {fileID: 6664438122652506466}
   WinScreenSeeker: {fileID: 0}
+  isinteract: DoInteract
+  animator: {fileID: 0}
 --- !u!1 &1109345344791555031
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +418,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -807,7 +809,7 @@ MonoBehaviour:
     - name: IsWalking
       NameHash: 1282839668
       Synchronize: 1
-      ParameterType: 4
+      ParameterType: 1
   AnimatorParametersExpanded: 0
 --- !u!4 &6617554881147940023 stripped
 Transform:
