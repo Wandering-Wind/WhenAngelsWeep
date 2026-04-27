@@ -22,6 +22,9 @@ public class Angel_Movment : NetworkBehaviour
     public float FakeSpeedIncreaseVar = 1;
     public float TimeSpeedIncreaseVar = 1;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource creakSource;
+    [SerializeField] private AudioClip creakSound; // Your WeepingAngelMoving.mp3
 
     private PlayerInput pi;
     private InputAction moveAction;
@@ -33,6 +36,7 @@ public class Angel_Movment : NetworkBehaviour
     private NetworkVariable<bool> isFrozen = new NetworkVariable<bool>(false);
 
     private float pitch;
+    private bool wasMovingLastFrame = false;
 
     public override void OnNetworkSpawn()
     {
@@ -53,7 +57,17 @@ public class Angel_Movment : NetworkBehaviour
         lookAction.Enable();
         TimeChangeSpeedServerRpc();
 
+        // Setup audio source if not assigned
+        if (creakSource == null)
+        {
+            creakSource = gameObject.AddComponent<AudioSource>();
+            creakSource.playOnAwake = false;
+            creakSource.spatialBlend = 1f; // 3D sound so others can hear it
+            creakSource.volume = 1f;
+            creakSource.loop = false;
+        }
     }
+
     private void OnEnable()
     {
         if (playerCamera) playerCamera.enabled = true;
@@ -66,11 +80,11 @@ public class Angel_Movment : NetworkBehaviour
 
     private void Update()
     {
-
         if (!IsOwner) return;
         if (isFrozen.Value)
         {
             cc.Move(Vector3.zero);
+            wasMovingLastFrame = false;
             return;
         }
 
@@ -79,19 +93,52 @@ public class Angel_Movment : NetworkBehaviour
 
         cc.Move(move * currMoveSpeed * Time.deltaTime);
 
+        // Check if currently moving
+        bool isMovingNow = m.magnitude > 0.1f;
+
+        // Play sound when movement starts (transition from stopped to moving)
+        if (isMovingNow && !wasMovingLastFrame)
+        {
+            PlayCreakSound();
+        }
+
+        wasMovingLastFrame = isMovingNow;
+
         Vector2 look = lookAction.ReadValue<Vector2>() * lookSensitivity;
         transform.Rotate(0f, look.x, 0f);
 
         pitch -= look.y;
         pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
         cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
+    }
 
+    private void PlayCreakSound()
+    {
+        if (creakSource != null && creakSound != null && !creakSource.isPlaying)
+        {
+            creakSource.PlayOneShot(creakSound);
+
+            // Sync to other players (so they can hear the killer moving)
+            if (IsServer)
+            {
+                PlayCreakClientRpc();
+            }
+        }
+    }
+
+    [ClientRpc]
+    private void PlayCreakClientRpc()
+    {
+        if (!IsOwner && creakSource != null && creakSound != null)
+        {
+            creakSource.PlayOneShot(creakSound);
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
     private void TimeChangeSpeedServerRpc()
     {
-        StartCoroutine(SpeedIncreaseRoutine()); 
+        StartCoroutine(SpeedIncreaseRoutine());
     }
 
     public void FakeSpeedInc()
@@ -118,7 +165,6 @@ public class Angel_Movment : NetworkBehaviour
 
     private IEnumerator SpeedIncreaseRoutine()
     {
-
         yield return new WaitForSeconds(speedTimeInc);
         currMoveSpeed += TimeSpeedIncreaseVar;
     }
