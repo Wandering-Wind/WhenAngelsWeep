@@ -23,7 +23,7 @@ public class Seeker_Movement : NetworkBehaviour
     [SerializeField] private Vector3 velocity;
 
     [Header("Animation")]
-    [SerializeField] private string speedParam = "Sped";
+    [SerializeField] private string iswalk = "IsWalking";
 
     private PlayerInput pi;
     private InputAction moveAction;
@@ -84,7 +84,7 @@ public class Seeker_Movement : NetworkBehaviour
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
             if (animator)
-                animator.SetFloat(speedParam, m.magnitude);
+                animator.SetFloat(iswalk, m.magnitude);
         }
     }
 

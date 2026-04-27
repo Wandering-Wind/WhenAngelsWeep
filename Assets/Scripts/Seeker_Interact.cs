@@ -11,6 +11,10 @@ public class Seeker_Interact : NetworkBehaviour
     [SerializeField] private Camera interactCamera;
     [SerializeField] private GameObject WinScreenSeeker;
 
+    [Header("Animation")]
+    [SerializeField] private string isinteract = "DoInteract";
+    [SerializeField] private Animator animator;
+
     private PlayerInput pi;
     private InputAction interactAction;
 
@@ -33,7 +37,9 @@ public class Seeker_Interact : NetworkBehaviour
 
         if (interactAction.WasPressedThisFrame())
         {
-            TryInteract(); 
+            TryInteract();
+            if (animator)
+                animator.SetTrigger(isinteract);
         }
     }
 
