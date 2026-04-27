@@ -5,7 +5,7 @@ public class How_To_Play : MonoBehaviour
 {
     public class SimpleSceneLoader : MonoBehaviour
     {
-        [SerializeField] string sceneName;
+        [SerializeField] private string sceneName;
         public void LoadScene()
         {
             SceneManager.LoadScene(sceneName);
