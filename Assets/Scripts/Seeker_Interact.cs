@@ -78,7 +78,7 @@ public class Seeker_Interact : NetworkBehaviour
             if (netObj.CompareTag("Artifact"))
             {
                 Debug.Log("REAL");
-                WinScreenSeeker.SetActive(true);
+                Instantiate(WinScreenSeeker);
                 Time.timeScale = 0f;
             }
             else if (netObj.CompareTag("Fake_Artifact"))
