@@ -93,7 +93,7 @@ public class Angel_Start_Place : NetworkBehaviour
         if (index >= Angel_Teleport_pos.Length)
             return;
 
-        Vector3 spawnPos = position + Vector3.up * offset;
+        Vector3 spawnPos = position + Vector3.up;
 
         GameObject prefabToSpawn = Angel_Teleport_pos[index];
 
@@ -131,16 +131,7 @@ public class Angel_Start_Place : NetworkBehaviour
             Debug.LogError("No_Artfiact");
             return;
         }
-        if (artifactMeshes.Length > 0)
-        {
-            int randomIndex = Random.Range(0, artifactMeshes.Length);
 
-            MeshFilter mf = obj.GetComponentInChildren<MeshFilter>();
-            if (mf != null)
-            {
-                mf.mesh = artifactMeshes[randomIndex];
-            }
-        }
         netObj.Spawn();
 
         artifactPlacedCount.Value++;

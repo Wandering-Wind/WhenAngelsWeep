@@ -54,9 +54,10 @@ public class Angel_Kill : NetworkBehaviour
         {
             if (netObj.CompareTag("Seeker"))
             {
-                winScreenAngel.SetActive(true);
-                Debug.Log("GameOver");
+                Instantiate(winScreenAngel);
                 Time.timeScale = 0f;
+                Debug.Log("GameOver");
+              
 
             }
         }
