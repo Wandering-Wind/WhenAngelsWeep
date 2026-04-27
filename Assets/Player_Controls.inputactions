@@ -50,6 +50,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Torch",
+                    "type": "Button",
+                    "id": "a26f483e-00de-43e2-8f2a-80e13f55fad4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -151,6 +160,17 @@
                     "action": "Sneak",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "615a2b94-55c2-4d90-9a9c-23be1d458509",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Torch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -189,6 +209,15 @@
                     "name": "Kill",
                     "type": "Button",
                     "id": "83ec0d5a-bddc-4ad5-a541-467e0cdc8213",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Placement",
+                    "type": "Button",
+                    "id": "4927e368-e374-4c56-864d-bf8260988da8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -276,11 +305,22 @@
                 {
                     "name": "",
                     "id": "bac78694-3295-41a6-8279-324e248d2181",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Kill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68cfc917-29c4-4585-ba07-6addb1f7186e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Placement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
