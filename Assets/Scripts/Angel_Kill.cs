@@ -10,6 +10,7 @@ public class Angel_Kill : NetworkBehaviour
     private PlayerInput pi;
     private InputAction killAction;
     [SerializeField] private float killRange = 3f;
+    [SerializeField] private GameObject winScreenAngel;
 
     public override void OnNetworkSpawn()
     {
@@ -53,8 +54,10 @@ public class Angel_Kill : NetworkBehaviour
         {
             if (netObj.CompareTag("Seeker"))
             {
-
+                winScreenAngel.SetActive(true);
                 Debug.Log("GameOver");
+                Time.timeScale = 0f;
+
             }
         }
     }

@@ -50,6 +50,14 @@ public class Seeker_Torch : NetworkBehaviour
         {
             RaycastTorch();
         }
+        if (!isTorchOn.Value)
+        {
+            if (lastFrozenAngel != ulong.MaxValue)
+            {
+                UnfreezeAngelServerRpc(lastFrozenAngel);
+                lastFrozenAngel = ulong.MaxValue;
+            }
+        }
     }
     [ServerRpc]
     private void OnTorchServerRpc()

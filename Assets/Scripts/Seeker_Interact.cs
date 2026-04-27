@@ -9,6 +9,7 @@ public class Seeker_Interact : NetworkBehaviour
     [SerializeField] private float InteractRange = 3f;
     [SerializeField] private Angel_Movment angelTarget;
     [SerializeField] private Camera interactCamera;
+    [SerializeField] private GameObject WinScreenSeeker;
 
     private PlayerInput pi;
     private InputAction interactAction;
@@ -71,6 +72,8 @@ public class Seeker_Interact : NetworkBehaviour
             if (netObj.CompareTag("Artifact"))
             {
                 Debug.Log("REAL");
+                WinScreenSeeker.SetActive(true);
+                Time.timeScale = 0f;
             }
             else if (netObj.CompareTag("Fake_Artifact"))
             {
