@@ -273,8 +273,6 @@ MonoBehaviour:
   maxPitch: 80
   FakeSpeedIncreaseVar: 1
   TimeSpeedIncreaseVar: 1
-  creakSource: {fileID: 0}
-  creakSound: {fileID: 8300000, guid: 4684d304b6d3eb144af0843a482f89e0, type: 3}
   speedTimeInc: 180
   freezeGraceTime: 0.2
 --- !u!114 &6020889920370422541
