@@ -13,7 +13,7 @@ public class Angel_Movment : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
 
     [Header("Player Settings")]
-    [SerializeField] private float currMoveSpeed = 5f;
+    [SerializeField] private float currMoveSpeed = 1f;
     public float changeSpeed;
     [SerializeField] private float lookSensitivity = 2f;
     [SerializeField] private float maxPitch = 80f;
