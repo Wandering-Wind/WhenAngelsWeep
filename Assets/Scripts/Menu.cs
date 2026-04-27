@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TMP_InputField ipInput;
     [SerializeField] private TMP_InputField portInput;
+    [SerializeField] private string Scene;
 
     [Header("Defaults")]
     [SerializeField] private string defaultIP = "127.0.0.1";
@@ -31,7 +32,7 @@ public class Menu : MonoBehaviour
         // set connection data first ...
         networkManager.StartHost();
         // Host loads game scene for everyone
-        networkManager.SceneManager.LoadScene("NGO_FPS", LoadSceneMode.Single);
+        networkManager.SceneManager.LoadScene(Scene, LoadSceneMode.Single);
     }
     public void JoinGame()
     {

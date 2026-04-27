@@ -15,6 +15,12 @@ public class Angel_Start_Place : NetworkBehaviour
     [SerializeField] private int maxPlacements = 3;
     public LayerMask groundLayer;
 
+    [SerializeField] private Mesh[] artifactMeshes;
+    [SerializeField] private GameObject realArtifactPrefab;
+    [SerializeField] private GameObject fakeArtifactPrefab;
+
+    private NetworkVariable<int> artifactPlacedCount = new NetworkVariable<int>(0);
+    private int maxArtifacts = 3;
 
     private PlayerInput pi;
     private InputAction placementAction;
@@ -25,11 +31,13 @@ public class Angel_Start_Place : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            enabled = false;
+            placementCamera.enabled = false;
             return;
         }
 
-        pi = GetComponent<PlayerInput>();
+        placementCamera.enabled = true;
+
+    pi = GetComponent<PlayerInput>();
         placementAction = pi.actions["Placement"];
         placementAction.Enable();
 
@@ -56,7 +64,15 @@ public class Angel_Start_Place : NetworkBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundLayer))
             {
-                PlaceObjectServerRpc(hit.point);
+                if(placedCount.Value < maxPlacements)
+                {
+                    PlaceAngelServerRpc(hit.point);
+                }
+                else if (artifactPlacedCount.Value < maxArtifacts)
+                {
+                    PlaceObjectServerRpc(hit.point);
+                }
+                
             }
         }
 
@@ -64,15 +80,15 @@ public class Angel_Start_Place : NetworkBehaviour
         {
             controller.StartGameplayServerRpc();
         }
-        if (placedCount.Value >= maxPlacements)
-            return;
+
     }
 
     [ServerRpc]
-    private void PlaceObjectServerRpc(Vector3 position)
+    private void PlaceAngelServerRpc(Vector3 position)
     {
         if (placedCount.Value >= maxPlacements)
             return;
+
         int index = placedCount.Value;
         if (index >= Angel_Teleport_pos.Length)
             return;
@@ -86,6 +102,48 @@ public class Angel_Start_Place : NetworkBehaviour
         placedPositions.Add(spawnPos);
 
         placedCount.Value++;
+    }
+
+    [ServerRpc]
+    private void PlaceObjectServerRpc(Vector3 position)
+    {
+        if (artifactPlacedCount.Value >= maxArtifacts)
+            return;
+
+        Vector3 spawnPos = position + Vector3.up * offset;
+
+        GameObject prefabToSpawn;
+
+        if (artifactPlacedCount.Value < 2)
+        {
+            prefabToSpawn = fakeArtifactPrefab;
+        }
+        else
+        {
+            prefabToSpawn = realArtifactPrefab;
+        }
+
+        GameObject obj = Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+
+        var netObj = obj.GetComponent<NetworkObject>();
+        if (netObj == null)
+        {
+            Debug.LogError("No_Artfiact");
+            return;
+        }
+        if (artifactMeshes.Length > 0)
+        {
+            int randomIndex = Random.Range(0, artifactMeshes.Length);
+
+            MeshFilter mf = obj.GetComponentInChildren<MeshFilter>();
+            if (mf != null)
+            {
+                mf.mesh = artifactMeshes[randomIndex];
+            }
+        }
+        netObj.Spawn();
+
+        artifactPlacedCount.Value++;
     }
 }
 

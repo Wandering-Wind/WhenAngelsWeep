@@ -13,7 +13,7 @@ public class Angel_Movment : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
 
     [Header("Player Settings")]
-    [SerializeField] private float currMoveSpeed = 5f;
+    [SerializeField] private float currMoveSpeed = 1f;
     public float changeSpeed;
     [SerializeField] private float lookSensitivity = 2f;
     [SerializeField] private float maxPitch = 80f;
@@ -69,7 +69,11 @@ public class Angel_Movment : NetworkBehaviour
 
         if (!IsOwner) return;
         if (isFrozen.Value)
+        {
+            cc.Move(Vector3.zero);
             return;
+        }
+
         Vector2 m = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * m.x + transform.forward * m.y;
 
@@ -92,13 +96,24 @@ public class Angel_Movment : NetworkBehaviour
 
     public void FakeSpeedInc()
     {
+        print("GVHJO{KJIHVJJO{OIYFGUOHIPJ{}HOGUIOHP");
         currMoveSpeed += FakeSpeedIncreaseVar;
     }
 
     public void Freeze()
     {
-        StartCoroutine(FreezeRoutine());
-        Debug.Log("FROZEN on server");
+        SetFreezeServerRpc(true);
+    }
+
+    public void Unfreeze()
+    {
+        SetFreezeServerRpc(false);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetFreezeServerRpc(bool state)
+    {
+        isFrozen.Value = state;
     }
 
     private IEnumerator SpeedIncreaseRoutine()
@@ -106,12 +121,6 @@ public class Angel_Movment : NetworkBehaviour
 
         yield return new WaitForSeconds(speedTimeInc);
         currMoveSpeed += TimeSpeedIncreaseVar;
-    }
-    private IEnumerator FreezeRoutine()
-    {
-        isFrozen.Value = true;
-        yield return new WaitForSeconds(freezeGraceTime);
-        isFrozen.Value = false;
     }
 
 }

@@ -16,6 +16,8 @@ public class Angel_Set_State : NetworkBehaviour
     public NetworkVariable<GameState> currentState = new NetworkVariable<GameState>(GameState.Placement);
     public override void OnNetworkSpawn()
     {
+        if (!IsOwner) return;
+
         currentState.OnValueChanged += OnStateChanged;
         ApplyState(currentState.Value);
     }

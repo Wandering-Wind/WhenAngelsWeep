@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 
 public class Seeker_Movement : NetworkBehaviour
 {
-    [Header("Game_State")]
-    [SerializeField] private Angel_Set_State gameState;
 
     [Header("Player Components")]
     [SerializeField] private Transform cameraPivot;
@@ -25,7 +23,7 @@ public class Seeker_Movement : NetworkBehaviour
     [SerializeField] private Vector3 velocity;
 
     [Header("Animation")]
-    [SerializeField] private string speedParam = "Sped";
+    [SerializeField] private string iswalk = "IsWalking";
 
     private PlayerInput pi;
     private InputAction moveAction;
@@ -61,16 +59,6 @@ public class Seeker_Movement : NetworkBehaviour
         currmoveSpeed = moveSpeed;
     }
 
-    private void OnEnable()
-    {
-        if (playerCamera) playerCamera.enabled = true;
-    }
-
-    private void OnDisable()
-    {
-        if (playerCamera) playerCamera.enabled = false;
-    }
-
     private void Update()
     {
             if (!IsOwner) return;
@@ -96,7 +84,7 @@ public class Seeker_Movement : NetworkBehaviour
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
             if (animator)
-                animator.SetFloat(speedParam, m.magnitude);
+                animator.SetFloat(iswalk, m.magnitude);
         }
     }
 
