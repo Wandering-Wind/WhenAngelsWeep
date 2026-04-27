@@ -340,8 +340,8 @@ MonoBehaviour:
   placementCamera: {fileID: 3031099740646395021}
   Angel_Teleport_pos:
   - {fileID: 6872159630502399786, guid: d4b7078cca9dd254d85cb5d40fc09e17, type: 3}
-  - {fileID: 6872159630502399786, guid: f1d1bbd7d5b56f74f998b5937b4134f7, type: 3}
-  - {fileID: 6872159630502399786, guid: 88379c5141de3b14eb53b0237c41e490, type: 3}
+  - {fileID: 6872159630502399786, guid: dd823c374123b46469495566715bf6ee, type: 3}
+  - {fileID: 6872159630502399786, guid: 1c7795b0a53e09c41b6c3d2fc123a56e, type: 3}
   placedPositions: []
   offset: 1
   maxPlacements: 3
