@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1746826439
+  GlobalObjectIdHash: 2960864061
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -264,7 +264,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   cameraPivot: {fileID: 79204883387010904}
   playerCamera: {fileID: 6664438122652506466}
-  animator: {fileID: 0}
+  animator: {fileID: 3996185661033210018}
   currmoveSpeed: 0
   moveSpeed: 5
   sneakSpeed: 3
@@ -309,7 +309,7 @@ MonoBehaviour:
   interactCamera: {fileID: 6664438122652506466}
   WinScreenSeeker: {fileID: 0}
   isinteract: DoInteract
-  animator: {fileID: 0}
+  animator: {fileID: 3996185661033210018}
 --- !u!1 &1109345344791555031
 GameObject:
   m_ObjectHideFlags: 0
