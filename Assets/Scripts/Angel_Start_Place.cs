@@ -93,7 +93,7 @@ public class Angel_Start_Place : NetworkBehaviour
         if (index >= Angel_Teleport_pos.Length)
             return;
 
-        Vector3 spawnPos = position + Vector3.up;
+        Vector3 spawnPos = position;
 
         GameObject prefabToSpawn = Angel_Teleport_pos[index];
 
