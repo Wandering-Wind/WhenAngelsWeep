@@ -15,7 +15,7 @@ public class Player_Spawner : NetworkBehaviour
         if (!IsServer) return;
 
         NetworkManager.Singleton.OnClientConnectedCallback += SpawnPlayer;
-        seekerpos = SeekerSpawn.transform.position;
+        //seekerpos = SeekerSpawn.transform.position;
         Angelpos = AngelSpawn.transform.position;
     }
 
@@ -34,7 +34,7 @@ public class Player_Spawner : NetworkBehaviour
 
     private Vector3 GetSpawnPoint(bool isAngel)
     {
-        return isAngel ? Angelpos : seekerpos;
+        return isAngel ? Angelpos : new Vector3(-60f, 6f, -9f);
     }
 }
 
